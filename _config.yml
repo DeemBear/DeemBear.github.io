@@ -1,6 +1,6 @@
 # my new items
 markdown: kramdown
-permalink: /:year/:month/:title 
+permalink: /:year/:month/:day/:title 
 github: DeemBear
 duoshuo: DeemBear
 email: github.io@gmail.com
