@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Git Cheat Sheet
 categories: ['工具']
 tags: ['工具', '版本控制', 'git']
