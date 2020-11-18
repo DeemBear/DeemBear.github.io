@@ -1,7 +1,7 @@
 ---
 title: 分布式会话基本原理
 categories: ['分布式']
-tags: ['分布式', 'session']
+tags: 原理
 date: 2019-06-04 23:42
 ---
 

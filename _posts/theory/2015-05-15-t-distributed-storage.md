@@ -1,7 +1,7 @@
 ---
 title: 分布式存储基本原理
 categories: ['分布式']
-tags: ['分布式', '分片']
+tags: 原理
 date: 2019-10-16 20:54
 ---
 
@@ -46,7 +46,7 @@ date: 2019-10-16 20:54
 
 读写分离的基本实现是：
 
-![img](distributed-storage.assets/master-slave-proxy.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/master-slave-proxy.png)
 
 - 数据库服务器搭建主从集群，一主一从、一主多从都可以。
 - 数据库主机负责读写操作，从机只负责读操作。
@@ -127,7 +127,7 @@ date: 2019-10-16 20:54
 
 水平分片从理论上突破了单机数据量处理的瓶颈，并且扩展相对自由，是分库分表的标准解决方案。
 
-![image-20200114211203589](distributed-storage.assets/image-20200114211203589.png)
+![image-20200114211203589](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/image-20200114211203589.png)
 
 一般来说，**单表有 200 万条数据** 的时候，性能就会相对差一些了，需要考虑分表了。但是，这也要视具体情况而定，可能是 100 万条，也可能是 500 万条，SQL 越复杂，就最好让单表行数越少。
 
@@ -135,7 +135,7 @@ date: 2019-10-16 20:54
 
 #### 分库分表策略
 
-![img](distributed-storage.assets/20200608091832.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/20200608091832.png)
 
 分库分表策略主要有两种：
 
@@ -178,7 +178,7 @@ date: 2019-10-16 20:54
 
 停机迁移/扩容是最暴力、最简单的迁移、扩容方案。
 
-![img](distributed-storage.assets/20200601114836.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/20200601114836.png)
 
 ##### 停机迁移/扩容流程
 
@@ -204,7 +204,7 @@ date: 2019-10-16 20:54
 
 #### 双写迁移
 
-![img](distributed-storage.assets/20200601135751.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/20200601135751.png)
 
 ##### 双写迁移流程
 
@@ -224,11 +224,11 @@ date: 2019-10-16 20:54
 
 生产环境的数据库，为了保证高可用，一般会采用主备架构。主库支持读写操作，从库支持读操作。
 
-![img](distributed-storage.assets/20200601121215.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/20200601121215.png)
 
 由于主备节点数据一致，所以将从库升级为主节点，并修改分片配置，将从节点作为分库之一，就实现了扩容。
 
-![img](distributed-storage.assets/20200601121400.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/20200601121400.png)
 
 ##### 升级从库的流程
 
@@ -276,11 +276,11 @@ date: 2019-10-16 20:54
 
 一般来讲，分页时需要按照指定字段进行排序。当排序字段就是分片字段的时候，我们通过分片规则可以比较容易定位到指定的分片，而当排序字段非分片字段的时候，情况就会变得比较复杂了。为了最终结果的准确性，我们需要在不同的分片节点中将数据进行排序并返回，并将不同分片返回的结果集进行汇总和再次排序，最后再返回给用户。如下图所示：
 
-![img](distributed-storage.assets/3710706-925381b9a478c8df.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/3710706-925381b9a478c8df.png)
 
 上面图中所描述的只是最简单的一种情况（取第一页数据），看起来对性能的影响并不大。但是，如果想取出第 10 页数据，情况又将变得复杂很多，如下图所示：
 
-![img](distributed-storage.assets/3710706-9a7cfbdb95bb9b70.png)
+![img](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/theory/distributed-storage.assets/3710706-9a7cfbdb95bb9b70.png)
 
 有些读者可能并不太理解，为什么不能像获取第一页数据那样简单处理（排序取出前 10 条再合并、排序）。其实并不难理解，因为各分片节点中的数据可能是随机的，为了排序的准确性，必须把所有分片节点的前 N 页数据都排序好后做合并，最后再进行整体的排序。很显然，这样的操作是比较消耗资源的，用户越往后翻页，系统性能将会越差。
 

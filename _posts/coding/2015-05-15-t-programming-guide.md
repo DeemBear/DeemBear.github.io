@@ -1,7 +1,7 @@
 ---
 title: 如何学习一门编程语言
-categories: ['编程']
-tags: ['编程']
+categories: 利器
+tags: 编程
 date: 2018-01-05 09:08
 ---
 

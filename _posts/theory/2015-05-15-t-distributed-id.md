@@ -1,7 +1,7 @@
 ---
 title: 分布式 ID 基本原理
 categories: ['分布式']
-tags: ['分布式', '分布式 ID']
+tags: 原理
 date: 2019-07-24 11:55
 ---
 
