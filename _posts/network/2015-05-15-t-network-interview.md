@@ -1,7 +1,7 @@
 ---
 title: 网络通信知识点面经
 categories: ['网络']
-tags: ['网络', '通信', 'application']
+tags: 面经
 date: 2019-06-02
 ---
 
