@@ -1,7 +1,7 @@
 ---
 title: Travis CI 入门教程
-categories: ['工具']
-tags: ['工具', 'CI']
+categories: 利器
+tags: 工具
 date: 2020-02-10 14:40
 ---
 
@@ -9,7 +9,7 @@ date: 2020-02-10 14:40
 
 ## 一、简介
 
-[Travis CI](https://travis-ci.org/) 提供的是持续集成服务（Continuous Integration，简称 CI）。我们在软件开发过程中，有构建、测试、部署这些必不可少的步骤，而这些会花掉我们很多的时间。为了提高软件开发的效率，现在涌现了很多自动化工具。[Travis CI](https://travis-ci.org/) 是目前[市场份额](https://github.blog/2017-11-07-github-welcomes-all-ci-tools/)最大的一个，而且有很详细的文档以及可以和 Github 很好的对接。
+[Travis CI](https://travis-ci.org/) 提供的是持续集成服务（Continuous Integration，简称 CI）。我们在软件开发过程中，有构建、测试、部署这些必不可少的步骤，而这些会花掉我们很多的时间。为了提高软件开发的效率，现在涌现了很多自动化工具。[Travis CI](https://travis-ci.org/) 是目前市场份额最大的一个，而且有很详细的文档以及可以和 Github 很好的对接。
 
 Travis CI 是 Github 项目最流行的持续集成工具。
 
@@ -25,7 +25,7 @@ Travis CI 是 Github 项目最流行的持续集成工具。
 
 然后，勾选你需要 Travis 帮你自动构建的仓库，打开仓库旁边的开关，打开以后，Travis 就会监听这个仓库的所有变化了。
 
-![travis-ci-1](travis-ci.assets/travis-ci-1.png)
+![travis-ci-1](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/tools/travis-ci.assets/travis-ci-1.png)
 
 ### 配置 `.travis.yml`
 
@@ -82,14 +82,14 @@ Github 有提供一个 [Personal access tokens](https://github.blog/2013-05-16-p
 
 前往 Github 帐号 Settings 页面，在左侧选择 `Personal Access Token`，然后在右侧面板点击 `“Generate new token”` 来新建一个 Token。需要注意的是，创建完的 Token 只有第一次可见，之后再访问就无法看见（只能看见他的名称），因此要保存好这个值。
 
-[![travis-ci-2](travis-ci.assets/travis-ci-2.png)
+[![travis-ci-2](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/tools/travis-ci.assets/travis-ci-2.png)
 
 那么，这个 Token 怎么使用呢。
 
 ### 方案一、
 
 一个比较方便快捷的方式，是通过 Travis 网站，写在每个仓库的设置页面里，有一个 `Environment Variables` 的配置项，给我们的 Token 起一个名字 `gh_token` 添加进去。这样以来，脚本内部就可以使用这个环境变量了。
-[![travis-ci-1](travis-ci.assets/travis-ci-3.png)
+[![travis-ci-1](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/tools/travis-ci.assets/travis-ci-3.png)
 你可以在你脚本内部使用 `${gh_token}` 的形式来使用这个 Token 了。【当然了，你还可以添加其他的环境变量进去。】【[官方文档在这里](https://docs.travis-ci.com/user/environment-variables)】
 
 使用 `Personal access tokens` 向 GitHub 提交代码的命令格式如下：
@@ -106,7 +106,7 @@ Github 有提供一个 [Personal access tokens](https://github.blog/2013-05-16-p
 
 你还可以使用 Travis CI 提供的加密工具来加密我们的这个 Token。加密原理机制如下：
 
-[![travis-ci-encrypt](travis-ci.assets/travis-encrypt.png)
+[![travis-ci-encrypt](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/tools/travis-ci.assets/travis-encrypt.png)
 
 首先，安装 Ruby 的包 `travis` 。
 
@@ -155,7 +155,7 @@ $ travis encrypt name=secretvalue --add
 
 [![Build Status](https://travis-ci.org/Neveryu/web-bookmarks.svg?branch=master)](https://travis-ci.org/Neveryu/web-bookmarks)
 
-[![travis-ci-4](travis-ci.assets/travis-ci-4.png)](https://neveryu.github.io/images/travis-ci-4.png)
+[![travis-ci-4](https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/master/_posts/tools/travis-ci.assets/travis-ci-4.png)]
 
 ### 如何跳过自动构建
 
