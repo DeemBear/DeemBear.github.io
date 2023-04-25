@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="author" content="{{ site.author }}" />
+		<title>{% if page.path == 'index.html' %}{{ site.name }}{% else %}{% unless page.id %}{{ site.name }} - {% endunless %}{{ page.title }}{% endif %}</title>
+		<link rel="shortcut icon" href="{{ ASSET_PATH }}/img/favicon.ico" />
+		<link href="/page/feed.html" rel="alternate" title="{{ site.author }}" type="application/atom+xml" />
+		<link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ site.atom_path }}">
+		<link rel="stylesheet" href="{{ ASSET_PATH }}/css/style.css" />
+		<link rel="stylesheet" href="{{ ASSET_PATH }}/css/duoshuo.css" />
+		<link rel="stylesheet" href="{{ ASSET_PATH }}/css/pygments/emacs.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ ASSET_PATH }}/toc.css">
+		<script src="{{ ASSET_PATH }}/jquery.tocLight.js"></script>
+		<script type="text/javascript">
+			$(function() { $.toc.clickHideButton(); });
+		</script>
+
+		<!--
+    <link rel="stylesheet" href="{{ ASSET_PATH }}/css/highlight.css" />
+    <script type="text/javascript" src="{{ ASSET_PATH }}/js/jquery-1.7.1.min.js"></script>
+    -->
+		<script type="text/javascript" src="{{ ASSET_PATH }}/js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="{{ ASSET_PATH }}/js/outliner.js"></script>
+
+		<!-- MathJax for LaTeX -->
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+		</script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({ tex2jax: { inlineMath: [ ['$','$'], ['$$$','$$$'], ["\\(","\\)"] ], processEscapes: true } });
+		</script>
+		<!--
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        -->
+		<script type="text/javascript" src="{{ ASSET_PATH }}/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!--视频支持-->
+<script src="{{ ASSET_PATH }}/vip/js/vue.min.js"></script>
+<script src="{{ ASSET_PATH }}/vip/js/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="{{ ASSET_PATH }}/vip/css/common.css">
+<script src="{{ ASSET_PATH }}/vip/videoApi.js"></script>
+
+
+	</head>
+	<!--  <body> 
+-->
+	<script type="text/javascript">
+		function setTimeSpan() {
+			var date = new Date();
+			timeSpan.innerText = date.format('yyyy-MM-dd hh:mm:ss');
+		}
+
+		Date.prototype.format = function(format) {
+			var o = {
+				"M+": this.getMonth() + 1, //month
+				"d+": this.getDate(), //day
+				"h+": this.getHours(), //hour
+				"m+": this.getMinutes(), //minute
+				"s+": this.getSeconds(), //second
+				"q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+				"S": this.getMilliseconds() //millisecond
+			}
+			if (/(y+)/.test(format))
+				format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+			for (var k in o)
+				if (new RegExp("(" + k + ")").test(format))
+					format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+			return format;
+		}
+	</script>
+
+	<body onLoad="setInterval(setTimeSpan,1000);">
+		<div id="container">
+			<div id="main" role="main">
+				<header>
+					<h1>
+						<table cellspacing="0" cellpadding="0" style="width: 100%;">
+							<tbody>
+								<tr>
+									<td style="width: auto;">{{ page.title }}</td>
+									<td style="width: 229px;">{% include widgets/search_box %}</td>
+								</tr>
+							</tbody></table>
+					</h1>
+				</header>
+				<nav id="real_nav">
+					<span><a title="home" class="" href="/">home</a></span>
+					<span><a title="ChatBing" class="" href="/ai" target="_blank">ChatBing</a></span>
+					<span><a title="categories" class="" href="/page/categories.html">categories</a></span> {% if site.categories %} {% for category in site.categories %}
+					<a href="/page/categories.html#{{ category[0] }}">{{ category[0] }}<span>({{ category[1].size }})</span></a> {% endfor %} {% endif %}
+					<span><a title="tags" class="" href="/page/tags.html">tags</a></span> {% if site.tags %}{% for tag in site.tags %}
+					<a href="/page/tags.html#{{ tag[0] }}">{{ tag[0] }}<span>({{ tag[1].size }})</span></a> {% endfor %}{% endif %}
+					<span><a title="logs" class="" href="/page/logs.html">Log</a></span>
+					<span><a title="timing" class="" href="/page/timing.html">timing</a></span>
+					<span><a title="poem" class="" href="/page/poem.html">poem</a></span>
+
+
+					<span><a title="music" class="" href="/music/" target="_blank">music</a></span>
+					<span><a title="music" class="" href="/dj/" target="_blank">dj</a></span>
+					<span><a title="music" class="" href="/waterfall/" target="_blank">photo</a></span>
+					<!--<span><a title="music" class="" href="{{ ASSET_PATH }}/vip/vip.html" target="_blank">视频破解</a></span>-->
+					<span><a title="about" class="" href="/page/about.html">about</a></span>
+					<span><a title="subscribe by RSS" class="" href="/page/feed.html" target="_blank">Subscribe</a></span> {% if site.links %} {% for link in site.links %}
+					<a href="{{ link.url }}" target="_blank">{{ link.name }}</a> {% endfor %} {% endif %}
+					<!--
+        <span><a title="sports" class="" href="/sports/">Sport</a></span>
+        <span><a title="game" class="" href="/game/">Game</a></span>  
+        <span><a title="guestbook" class="" href="/guestbook/">guestbook</a></span>
+        <span><a title="友情链接" class="" href="/links/">链接</a></span>
+        <span><a title="种子订阅" class="" href="/feed/" target="_blank">订阅</a></span> 
+        -->
+				</nav>
+
+
+				<!-- Main Content -->
+
+				<div id="loader"></div>
+				<div id="main-content">
+
+					<article class="content">
+
+						{{ content }}
+
+					</article>
+
+				</div>
+
+
+				<a style="position:fixed;bottom:5px;right:5px;" href="#" title="Back to Top">
+					<img src="{{ ASSET_PATH }}/img/btt.png" />
+				</a>
+			</div>
+
+			<footer>
+				<p><small>
+            <a href="http://github.com/{{ site.github }}/deembear.github.io/new/master/_posts" target="_blank" title="撰写文章">Po</a>wer<a href="http://github.com/{{ site.github }}/deembear.github.io/edit/master/{{ page.path }}" target="_blank" title="编辑页面">ed</a> by <a href="http://jekyllrb.com" target="_blank">Jekyll</a> @ <a href="http://github.com/{{ site.github }}/deembear.github.io" target="_blank" title="项目主页">GitHub</a> | Copyright 2013 - {{site.time | date:"%Y"}} by <a href="/page/about.html">DeemBear</a> | <span class="label label-info" id="timeSpan"></span></small>
+				</p>
+			</footer>
+
+		</div>
+
+
+<!--视频支持-->
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            api:api,
+            nowIndex:0,
+            videoSrc:"",
+            isShow:false,
+            width:"",
+            height:"",
+        },
+        methods: {
+            toggleList:function(){
+                if(this.isShow == false){
+                    this.isShow = true;
+                } else {
+                    this.isShow = false;
+                }
+            },
+            selectApi:function(index){
+                this.nowIndex = index;
+                this.toggleList();
+            },
+        },
+        computed: {
+            getNowApiName:function(){
+                return this.nowIndex +1 ;
+            },
+            getApi:function(){
+                return this.api[this.nowIndex] + this.videoSrc ;
+            }
+        },
+        watch:{
+            videoSrc:function(){
+                document.getElementById("videos").src = this.getApi;
+            },
+            nowIndex:function(){
+                document.getElementById("videos").src = this.getApi;
+            }
+        },
+        directives:{
+            focus:{
+                inserted:function(el){
+                    el.focus();
+                }
+            }
+        },
+        mounted:function(){
+            let that = this;
+            // 点击空白区域，列表消失
+            document.documentElement.addEventListener("click",function(){
+                that.isShow = false;
+            })
+            // 计算屏幕长宽
+            this.width = ($(window).width() - 350) + "px";
+            this.height = ($(window).height() - 180) + "px";
+            // 打开默认播放默认视频
+            document.getElementById("videos").src = this.getApi;
+        }
+    })
+</script>
+
+
+	</body>
+
+</html>

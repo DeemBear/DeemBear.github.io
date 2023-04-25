@@ -1,0 +1,49 @@
+﻿var playlist = [{
+	"songName": "风和日丽大傻逼",
+	"singerName": "小老虎",
+	"mp3": "/music/res/1.mp3",
+	"lrc": "/music/res/1.lrc",
+	"coverImage": "/music/res/img/1.jpg"
+}, {
+	"songName": "再见杰克",
+	"singerName": "痛苦的信仰",
+	"mp3": "http://deembear.github.io/res/assets/%E5%86%8D%E8%A7%81%E6%9D%B0%E5%85%8B-%E7%97%9B%E4%BB%B0.mp3",
+	"lrc": "http://deembear.github.io/res/assets/再见杰克-痛仰.lrc",
+	"coverImage": "/music/res/img/2.jpg"
+}, {
+	"songName": "夜空中最亮的星",
+	"singerName": "逃跑计划",
+	"mp3": "http://deembear.github.io/res/assets/%E5%A4%9C%E7%A9%BA%E4%B8%AD%E6%9C%80%E4%BA%AE%E7%9A%84%E6%98%9F(Remix%E7%89%88)-%E9%80%83%E8%B7%91%E8%AE%A1%E5%88%92%E4%B9%90%E9%98%9F.mp3",
+	"lrc": "http://deembear.github.io/res/assets/夜空中最亮的星(Remix版)-逃跑计划乐队.lrc",
+	"coverImage": "/music/res/img/3.jpg"
+}, {
+	"songName": "Bling Bling Bling",
+	"singerName": "后海大鲨鱼",
+	"mp3": "http://deembear.github.io/res/assets/Bling%20Bling%20Bling-%E5%90%8E%E6%B5%B7%E5%A4%A7%E9%B2%A8%E9%B1%BC.mp3",
+	"lrc": "http://deembear.github.io/res/assets/Bling Bling Bling-后海大鲨鱼.lrc",
+	"coverImage": "/music/res/img/4.jpg"
+}, {
+	"songName": "南方",
+	"singerName": "达达乐队",
+	"mp3": "http://deembear.github.io/res/assets/%E5%8D%97%E6%96%B9-%E8%BE%BE%E8%BE%BE%E4%B9%90%E9%98%9F.mp3",
+	"lrc": "http://deembear.github.io/res/assets/南方-达达乐队.lrc",
+	"coverImage": "/music/res/img/5.jpg"
+}, {
+	"songName": "丢",
+	"singerName": "布衣乐队",
+	"mp3": "http://deembear.github.io/res/assets/%E4%B8%A2-%E5%B8%83%E8%A1%A3%E4%B9%90%E9%98%9F.mp3",
+	"lrc": "http://deembear.github.io/res/assets/丢-布衣乐队.lrc",
+	"coverImage": "/music/res/img/6.jpg"
+}, {
+	"songName": "每条伤心的大街",
+	"singerName": "飘乐队",
+	"mp3": "http://deembear.github.io/res/assets/%E6%AF%8F%E6%9D%A1%E4%BC%A4%E5%BF%83%E7%9A%84%E5%A4%A7%E8%A1%97-%E9%A3%98%E4%B9%90%E9%98%9F.mp3",
+	"lrc": "http://deembear.github.io/res/assets/每条伤心的大街-飘乐队.lrc",
+	"coverImage": "/music/res/img/7.jpg"
+}, {
+	"songName": "Amarantine",
+	"singerName": "Enya",
+	"mp3": "http://deembear.github.io/res/assets/Amarantine-Enya.mp3",
+	"lrc": "http://deembear.github.io/res/assets/Amarantine-Enya.lrc",
+	"coverImage": "/music/res/img/8.jpg"
+}]

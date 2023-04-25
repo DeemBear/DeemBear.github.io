@@ -1,0 +1,49 @@
+# my new items
+markdown: kramdown
+permalink: /:year/:month/:day/:title
+github: Deeme
+duoshuo: DeemBear
+email: github.io@gmail.com
+url: http://deembear.github.io
+name: DeemBear
+author: DeemBear
+img_url: /assets/img
+code_dir: /assets/code
+#weibo: 1649684551
+
+# markdown: rdiscount
+# permalink: /:title/
+# url: http://deembear.github.io
+# qq: 98592
+# duoshuo: DeemBear
+#beian: 浙ICP备12026616号
+#cnzz: 119959
+pygments: true
+#safe: true
+paginate: 10
+about: "一个"
+
+#链接
+links:
+     - name:    GitHub
+       url:     http://github.com/Deeme
+     - name:    OSChina
+       url:     http://oschina.net
+       
+#production_url: http://localhost:4000
+production_url: http://deembear.github.io
+archive_path: /page/archive.html
+categories_path : /page/categories.html
+tags_path : /page/tags.html
+messages_path : /page/messages.html
+about_path : /page/about.html
+photo_path : /page/photo.html
+music_path : /page/music.html
+video_path : /page/video.html
+links_path : /page/links.html
+weiboxiu_path : /page/weiboxiu.html
+rss_path : /page/rss.xml
+atom_path: /atom.xml
+BASE_PATH : false
+ASSET_PATH : false
+IMAGE_PATH : false

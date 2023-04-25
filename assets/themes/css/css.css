@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Cuprum';
+  font-style: normal;
+  font-weight: 400;
+  src: url({{ ASSET_PATH }}/css/-iGmidt4SirRkI4DjBoTLA.eot);
+  src: local('Cuprum'), local('Cuprum-Regular'), url({{ ASSET_PATH }}css/-iGmidt4SirRkI4DjBoTLA.eot) format('embedded-opentype'), url({{ ASSET_PATH }}/css/sp1_LTSOMWWV0K5VTuZzvQ.woff) format('woff');
+}
+@font-face {
+  font-family: 'Electrolize';
+  font-style: normal;
+  font-weight: 400;
+  src: url({{ ASSET_PATH }}/css/DDy9sgU2U7S4xAwH5thnJ2fQcKutQXcIrRfyR5jdjY8.eot);
+  src: local('Electrolize'), local('Electrolize-Regular'), url({{ ASSET_PATH }}/css/DDy9sgU2U7S4xAwH5thnJ2fQcKutQXcIrRfyR5jdjY8.eot) format('embedded-opentype'), url({{ ASSET_PATH }}css/DDy9sgU2U7S4xAwH5thnJ4bN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Galdeano';
+  font-style: normal;
+  font-weight: 400;
+  src: url({{ ASSET_PATH }}/css/7jX5YT8ca7yDu9GzRW5rL_esZW2xOQ-xsNqO47m55DA.eot);
+  src: local('Galdeano Regular'), local('Galdeano-Regular'), url({{ ASSET_PATH }}/css/7jX5YT8ca7yDu9GzRW5rL_esZW2xOQ-xsNqO47m55DA.eot) format('embedded-opentype'), url({{ ASSET_PATH }}/css/XWkZhyfrNgo9X-giTt_ZffesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}

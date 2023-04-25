@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="../favicon.png" rel="shortcut icon">
+		<link rel="stylesheet" href="style.css" />
+
+		<link rel="stylesheet" href="index.css" />
+	</head>
+
+	<body>
+
+
+		<!-- 播放器 -->
+		<div id="player" class="player">
+			<div class="cover">
+				<img id="coverImage" src="http://deembear.github.io/res/img/1.jpg" width="380px" />
+			</div>
+			<div class="control clearfix">
+
+				<!-- 播放按钮 -->
+				<div id="playControl" class="play-con">
+					<span id="playBtn" class="b d"></span>
+					<span id="pauseBtn" class="z vs clearfix">
+
+					<i class="l fl"></i><i class="l fr"></i>
+
+				</span>
+				</div>
+
+				<!-- 进度条 -->
+				<div class="play-pro">
+					<span id="songProgressBar" class="p b"></span>
+					<span id="songProgressLoad" class="p l"></span>
+					<span id="songProgressCurrent" class="p w"></span>
+					<span id="songProgressHideBar" class="p h"></span>
+				</div>
+
+				<!-- 音量控制 -->
+				<div class="play-vol">
+					<img id="volumeBtn" class="b" src="http://deembear.github.io/res/vol.png" width="18px" height="18px" />
+					<span id="volumePanel" class="p">
+
+					<span id="volumeProgressBar" class="c">
+
+						<span class="g">
+
+							<i id="volumeProgressCurrent" class="w"></i>
+
+						</span>
+					<span id="volumeCurrentBtn" class="d"></span>
+					</span>
+					</span>
+				</div>
+
+			</div>
+
+			<!-- 歌词&播放列表 -->
+			<div class="box">
+				<!-- 歌词 -->
+				<div id="lrcPanel" class="lrc">
+					<div id="title" class="title">正在加载</div>
+					<div class="wrap">
+						<div class="content" id="lrc">
+							<img src="http://deembear.github.io/res/loading.gif" width="16px" height="11px" />
+						</div>
+					</div>
+				</div>
+
+				<!-- 播放列表 -->
+				<div id="playList" class="play-list vs"></div>
+
+				<!-- 显示播放列表按钮 -->
+				<div id="playListBtn" class="play-list-btn">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript" src="{{ ASSET_PATH }}/js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="js/soundmanager2-jsmin.js"></script>
+		<script type="text/javascript" src="list.js"></script>
+		<script type="text/javascript" src="js/index.min.js"></script>
+	</body>
+
+</html>

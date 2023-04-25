@@ -1,0 +1,87 @@
+<section class="meta">
+<span class="time">
+  <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date:"%Y-%m-%d" }}</time>
+</span>
+{% if page.categories.size != 0 %}
+ | 
+<span class="categories">
+  categories
+  {% for cat in page.categories %}
+  <a href="/page/categories.html#{{ cat }}" title="{{ cat }}">{{ cat }}</a>&nbsp;
+  {% endfor %}
+</span>
+{% endif %}
+{% if page.tags.size != 0 %}
+ | 
+<span class="tags">
+  tags
+  {% for tag in page.tags %}
+  <a href="/page/tags.html#{{ tag }}" title="{{ tag }}">{{ tag }}</a>&nbsp;
+  {% endfor %}
+</span>
+{% endif %}
+</section>
+
+<div id="navtop">
+	<div class="post-navigation-wrapper">
+		<div id="post-navigation">
+			{% include navtoppost.html %}
+		</div>
+	</div>
+</div>
+
+<section class="post">
+{{ content | toc_generate }}
+</section>
+
+<h2>同类文章</h2>
+		{% for category in site.categories %} {% if page.categories.first == category[0] %}
+		<ul id="{{ category[0] }}">
+			{% assign pages_list = category[1] %} {% include JB/pages_list %}
+		</ul>
+		{% endif %} {% endfor %}
+
+<div id="navtop">
+	<div id="post-navigation">
+		{% include navtoppost.html %}
+	</div>
+</div>
+
+{% include comments.md %}
+
+<script type="text/javascript">
+$(function(){
+  $(document).keydown(function(e) {
+    var url = false;
+        if (e.which == 37 || e.which == 74) {  // Left arrow and J
+            {% if page.previous %}
+        url = '{{ site.url }}{{ page.previous.url }}';
+        {% endif %}
+        }
+        else if (e.which == 39 || e.which == 75) {  // Right arrow and K
+            {% if page.next %}
+        url = '{{ site.url }}{{ page.next.url }}';
+        {% endif %}
+        }
+        if (url) {
+            window.location = url;
+        }
+  });
+})
+</script>
+
+<div id="gitment-ctn"></div>
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "<%=page.title%>",
+  owner: 'DeemBear',
+  repo: 'deembear.github.io',
+  oauth: {
+    client_id: '7fdf00351a7f7bf8ad73',
+    client_secret: '2fcaa3cdcd39d3b3b26f6cf9e4bba564760af8b8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
