@@ -7,9 +7,9 @@ body {
 #head {
     position: fixed;
     top: 0;
-    left: 1;
+    left: 0;
     width: 100%;
-    height: 1.5rem;
+    height: 1.3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -44,7 +44,7 @@ div.markdown-body {
 }
 
 #head-img-div-h2-img>* {
-    margin: 0;
+    margin: 5px;
 }
 
 #head-li-div {
@@ -142,11 +142,12 @@ body:has(#background.c) .ThemeColors {
 /* 尾部分 */
 
 #tail {
+    padding: 0rem 0.3rem;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     backdrop-filter: blur(10px);
@@ -158,7 +159,7 @@ body:has(#background.c) .ThemeColors {
 
 #SearchSuggestions {
     position: fixed;
-    top: -2rem;
+    top: -1.5rem;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -171,10 +172,10 @@ body:has(#background.c) .ThemeColors {
 #SearchSuggestions>a {
     backdrop-filter: blur(10px);
     background-color: #ffffff82;
-    border-radius: 0.5rem;
-    padding: 3px;
+    border-radius: 1rem;
+    padding: 0rem 0.3rem;
     font-size: 0.9rem;
-    margin: 3px;
+    margin: 0.1rem;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -193,7 +194,7 @@ body:has(#background.c) .ThemeColors {
     max-width: 75rem;
     align-items: center;
     justify-content: center;
-    height: 80%;
+    height: 100%;
 }
 
 
@@ -207,7 +208,7 @@ body:has(#background.c) .ThemeColors {
     border-radius: 1.5rem;
     background-color: #ffffff9e;
     height: 100%;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     transition: all 0.5s;
     overflow: hidden;
     white-space: normal;
@@ -231,7 +232,7 @@ body:has(.my) #restart {
 #expand{
     font-size: 1rem;
     transform:rotate(270deg);
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
     transition: transform 0.5s;
     cursor: pointer;
 }
@@ -248,20 +249,19 @@ body:has(.my) #restart {
     height: 100%;
 }
 #cueWord-selects-h3{
-    margin: 0;
-    margin-top: 0.5rem;
+    margin: 0.5rem 0 0;
     text-align: center;
 }
 
 #send {
     border: 0;
-    margin: 0 0.5rem 1rem 0;
-    border-radius: 0.5rem;
+    margin: 0 1rem 1rem 0;
+    border-radius: 2rem;
     background-color: rgb(182 196 255);
     height: 1.8rem;
     font-size: 0.8rem;
     cursor: pointer;
-    min-width: 2rem;
+    min-width: 3rem;
     transition: all 0.5s;
 }
 
@@ -275,8 +275,8 @@ body:has(.my) #restart {
     outline: none;
     width: 100%;
     background-color: #ffffff00;
-    margin: 0rem 0 0rem 0.5rem;
-    height: -webkit-fill-available;
+    margin: 1rem 0 1rem 1rem;
+    flex: 1;
 }
 
 #input:focus-visible {
@@ -291,10 +291,10 @@ body:has(.my) #restart {
     margin: 0 0;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: stretch;
     transition: all 0.5s;
     position: relative;
-    top:0;
+    top: 0;
     z-index: 1;
 }
 
@@ -302,7 +302,7 @@ body:has(.my) #restart {
     position: relative;
     top: -100%;
     height: 300%;
-    box-shadow: #00000052 0rem 0rem 0.5rem;
+    box-shadow: #00000052 0 0 0.5rem;
 }
 
 
@@ -312,12 +312,12 @@ body:has(.my) #restart {
     top: -25.5rem;
     height: 25rem;
     opacity: 1;
-    box-shadow: #00000052 0rem 0rem 0.5rem;
+    box-shadow: #00000052 0 0 0.5rem;
 }
 #cueWord-box{
     position: absolute;
-    top: 0rem;
-    height: 0rem;
+    top: 0;
+    height: 0;
     width: 100%;
     transition: all 0.5s;
     overflow: hidden;
@@ -343,7 +343,6 @@ div#cueWord-search{
     flex-wrap: nowrap;
     align-items: stretch;
     max-width: 100%;
-    max-width: -webkit-fill-available;
     width: 40rem;
     height: 2rem;
     border-radius: 1rem;
@@ -401,7 +400,7 @@ div#cueWord-search{
     border-radius: 1rem;
     height: 2rem;
     line-height: 2rem;
-    margin: 0rem 0.3rem 0.5rem 0.3rem;
+    margin: 0 0.3rem 0.5rem 0.3rem;
     padding: 0 0.5rem;
     font-size: 0.7rem;
     white-space: nowrap;
@@ -599,8 +598,7 @@ body {
 
 .InternalSearchQuery>p,
 .InternalLoaderMessage>p {
-    margin: 0;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
 }
 
 .adaptiveCardsFatherDIV,
@@ -608,7 +606,7 @@ body {
     display: inline-block;
     background-color: #ffffff;
     border-radius: 1rem;
-    padding: 1rem 1rem;
+    padding: 0rem 0.5rem;
     max-width: 90%;
     margin-bottom: 1rem;
     text-align: left;
@@ -616,17 +614,15 @@ body {
 
 .adaptiveCardsFatherDIV .throttling {
     text-align: end;
-    font-size: 0.4rem;
-    margin-top: 0.5rem;
-    margin-bottom: -0.8rem;
-    border-top: 1px solid #0000005c;
+    font-size: 0.9rem;
+    margin-top: -1.2rem;
+    margin-right: -3rem;
 }
 
 .bing>.sourceAttributions {
     font-size: 0.9rem;
     max-width: 90%;
-    margin: 0;
-    margin-bottom: 1rem;
+    margin: 0 0 1rem;
     display: inline-flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -721,7 +717,7 @@ body {
 
 .GenerateContentQuery>a>img:hover {
     margin: 0.2% 0.8% 0.8% 0.2%;
-    box-shadow: #0000007a 2px 3px 5px 0px;
+    box-shadow: #0000007a 2px 3px 5px 0;
     transition: all 0.3s;
 }
 
