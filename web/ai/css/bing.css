@@ -268,14 +268,13 @@ body:has(.my) #restart {
 }
 
 #input {
-    margin-top: 0.05rem;
     border: none;
     resize: none;
     outline: none;
     width: 100%;
     background-color: #ffffff00;
     flex: 1;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
 }
 
 #input:focus-visible {
