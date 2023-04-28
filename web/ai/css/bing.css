@@ -142,7 +142,6 @@ body:has(#background.c) .ThemeColors {
 /* 尾部分 */
 
 #tail {
-    padding: 0rem 0.0rem;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -255,14 +254,12 @@ body:has(.my) #restart {
 }
 
 #send {
-    border: 0;
-    margin: 0rem 0.5rem 0rem 0;
+    padding: 0rem 0rem;
+    margin: 0rem 0rem;
     border-radius: 0.5rem;
     background-color: rgb(182 196 255);
-    height: 100%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    min-width: 3rem;
     transition: all 0.5s;
 }
 
@@ -271,12 +268,12 @@ body:has(.my) #restart {
 }
 
 #input {
+    margin-top: 0.05rem;
     border: none;
     resize: none;
     outline: none;
     width: 100%;
     background-color: #ffffff00;
-    margin: 0rem 0 0rem 0rem;
     flex: 1;
     font-size: 1.5rem;
 }
@@ -290,7 +287,6 @@ body:has(.my) #restart {
     flex: 1;
     height: 100%;
     background-color: #ffffff;
-    margin: 0 0;
     display: flex;
     flex-direction: row;
     align-items: stretch;
