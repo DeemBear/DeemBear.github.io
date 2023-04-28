@@ -147,7 +147,7 @@ body:has(#background.c) .ThemeColors {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 1.5rem;
+    height: 2rem;
     display: flex;
     justify-content: center;
     backdrop-filter: blur(10px);
@@ -208,7 +208,7 @@ body:has(#background.c) .ThemeColors {
     border-radius: 0.5rem;
     background-color: #ffffff9e;
     height: 100%;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     transition: all 0.5s;
     overflow: hidden;
     white-space: normal;
@@ -230,12 +230,12 @@ body:has(.my) #restart {
 }
 
 #expand{
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     transform:rotate(270deg);
-    margin-top: 0.1rem;
+    margin-top: 0rem;
     transition: transform 0.5s;
     cursor: pointer;
-    margin-right: 0.8rem;
+    margin-right: 0.5rem;
 }
 #expand.open{
     transform:rotate(90deg);
@@ -260,7 +260,7 @@ body:has(.my) #restart {
     border-radius: 0.5rem;
     background-color: rgb(182 196 255);
     height: 100%;
-    font-size: 0.8rem;
+    font-size: 1.5rem;
     cursor: pointer;
     min-width: 3rem;
     transition: all 0.5s;
@@ -276,8 +276,9 @@ body:has(.my) #restart {
     outline: none;
     width: 100%;
     background-color: #ffffff00;
-    margin: 0.1rem 0 0rem 0rem;
+    margin: 0rem 0 0rem 0rem;
     flex: 1;
+    font-size: 1.5rem;
 }
 
 #input:focus-visible {
