@@ -497,7 +497,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    margin-bottom: 7rem;
+    margin-bottom: 0rem;
     transition: all 0.5s;
 }
 
@@ -565,7 +565,7 @@ body {
 
 .bing,
 .my {
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
 }
 
 .bing {
