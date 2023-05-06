@@ -23,7 +23,7 @@ export default class TitleWorker {
      * */
     restart(){
         this.setSubtitleText('想发什么呢？让我帮你！');
-        document.title = 'NewBingGoGo:聊天啦啦啦啦';
+        document.title = 'DeemBear:聊天';
     }
     /**
      * 正在创建聊天时
