@@ -55,14 +55,31 @@ ul ul,
 ol ol {
 	margin-left: 1em;
 }
+
 pre code {
-	margin: 0.1em 2em;
-	line-height: 1.2;
-	display: block;
-	background: #2d2d2d;
-  	color: #cccccc;
-  	white-space:normal;
+    border-radius:2px;
+    margin: 0.1em 1em;
+    line-height: 1.2;
+    display: block;
+    background: #2d2d2d;
+      color: #cccccc;
+      white-space:pre;
+      padding: 0.5em;
+      font-family: "Courier New", monospace;
 }
+
+pre code .keyword {
+    color: #ff9d00;
+}
+
+pre code .string {
+    color: #a6e22e;
+}
+
+pre code .comment {
+    color: #75715e;
+}
+
 pre .coffeescript .javascript,
 pre .javascript .xml,
 pre .tex .formula,
@@ -214,11 +231,23 @@ blockquote p {
 	padding: .3em 0;
 }
 h2 {/*新添加*/
-	padding: .2em 0;
+	padding: .2em 0.3em;
 }
 
 h3 {/*新添加*/
-	padding: .1em 0;
+	padding: .1em 0.6em;
+}
+
+h4 {/*新添加*/
+	padding: .1em 0.9em;
+}
+
+h5 {/*新添加*/
+	padding: .1em 1.2em;
+}
+
+h6 {/*新添加*/
+	padding: .1em 1.5em;
 }
 
 .content img {
