@@ -63,7 +63,8 @@ pre code {
     display: block;
     background: #2d2d2d;
       color: #cccccc;
-      white-space:pre;
+      white-space:pre-wrap;;
+      padding: 0.2em 0.1em 0.1em 0em;
       font-family: "Courier New", monospace;
 }
 
