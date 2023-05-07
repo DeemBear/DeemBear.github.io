@@ -55,7 +55,7 @@ export default class BingChat{
             res = await nBGGFetch(`${window.location.origin}/turing/conversation/create`);
         } catch (e) {
             console.warn(e);
-            throw e.isNewBingGoGoError?e:new Error("无法连接到web服务器，请刷新页面重试:" + e.message);
+            throw e.isDeemBearError?e:new Error("无法连接到web服务器，请刷新页面重试:" + e.message);
         }
         let cookieID = res.headers.get("cookieID");
         if (res.status === 404) {

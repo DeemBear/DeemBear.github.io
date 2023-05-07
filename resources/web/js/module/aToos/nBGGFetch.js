@@ -3,14 +3,14 @@
  * */
 export default async function nBGGFetch(url,rr){
     if(!rr){
-        rr = {headers:{"NewBingGoGoWeb":"true"}};
+        rr = {headers:{"DeemBear":"true"}};
     }else if(!rr.headers){
-        rr.headers = {"NewBingGoGoWeb":"true"};
+        rr.headers = {"DeemBear":"true"};
     }else {
-        rr.headers['NewBingGoGoWeb'] = "true";
+        rr.headers['DeemBear'] = "true";
     }
    let re = await fetch(url,rr)
-   if(re.headers.get('NewBingGoGoError')){
+   if(re.headers.get('DeemBearError')){
        let json = await re.json();
        let error= new Error(json.message);
        error.value = json.value;
