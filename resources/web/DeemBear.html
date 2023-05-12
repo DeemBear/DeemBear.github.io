@@ -25,12 +25,6 @@
         </div>
     </div>
 
-        <!-- 添加一个下拉选项框 -->
-        <select id="actSelect" class="selector">
-            <!-- 默认选项为空 -->
-            <option value="">请选择</option>
-        </select>
-
     <div id='head-li-div'>
         <a href="https://ai.deembear.top" target="_blank">Bing</a>
         <a href="https://ci.deembear.top" target="_blank">Claude</a>
@@ -48,10 +42,18 @@
 
         <!-- 输入框 -->
         <div id="input-div">
+
             <textarea id="input" type="text" enterkeyhint="send" autocapitalize="off" autocomplete="off" aria-autocomplete="both" spellcheck="false" aria-label="询问必应" autocorrect="off" placeholder="有问题尽管问我..."></textarea>
             <div id="input-div-box">
                 <div id="expand">➤</div>
                 <input style="opacity: 0" id="send" class="ThemeColors" type="button" value="发送">
+
+        <!-- 添加一个下拉选项框 -->
+        <select id="actSelect" class="selector">
+            <!-- 默认选项为空 -->
+            <option value="">请选择</option>
+        </select>
+
             </div>
 
             <!-- 提示词 -->
@@ -125,10 +127,10 @@
 
 <style>
 select {
-  max-width:139px;
+  max-width:66px;
 }
 option {
-  max-width:139px;
+  max-width:66px;
 }
 </style>
 <script>
