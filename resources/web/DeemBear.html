@@ -24,6 +24,13 @@
             <h3 id="goGoSubtitle">想发什么呢？让我帮你！</h3>
         </div>
     </div>
+
+        <!-- 添加一个下拉选项框 -->
+        <select id="actSelect" class="selector">
+            <!-- 默认选项为空 -->
+            <option value="">请选择</option>
+        </select>
+
     <div id='head-li-div'>
         <a href="https://ai.deembear.top" target="_blank">Bing</a>
         <a href="https://ci.deembear.top" target="_blank">Claude</a>
@@ -115,6 +122,65 @@
         </div>
     </div>
 </div>
+
+<style>
+select {
+  max-width:139px;
+}
+option {
+  max-width:139px;
+}
+</style>
+<script>
+// 定义一个变量存储json文件的内容
+let aJson;
+
+// 使用fetch函数获取json文件的内容，并转换为json对象
+fetch('https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/main/resources/prompts-my.json')
+  .then(response => response.json())
+  .then(data => {
+    // 将json对象赋值给aJson变量
+    aJson = data;
+    // 遍历json对象中的每个元素
+    for (let item of aJson) {
+      // 获取act值
+      let act = item.act;
+      // 创建一个option元素
+      let option = document.createElement('option');
+      // 设置option元素的value属性为act值
+      option.value = act;
+      // 设置option元素的文本内容为act值
+      option.textContent = act;
+      // 获取下拉选项框元素
+      let actSelect = document.getElementById('actSelect');
+      // 将option元素添加到下拉选项框中
+      actSelect.appendChild(option);
+    }
+  });
+
+// 给下拉选项框添加一个change事件监听器
+document.getElementById('actSelect').addEventListener('change', function() {
+  // 获取下拉选项框中选中的值
+  let selectedAct = this.value;
+  // 如果选中的值不为空
+  if (selectedAct) {
+    // 遍历json对象中的每个元素
+    for (let item of aJson) {
+      // 如果元素的ac值与选中的值相同
+      if (item.act === selectedAct) {
+        // 获取prompt值
+        let prompt = item.prompt;
+        // 获取用户输入的文本输入框元素
+        let userInput = document.getElementById('input');
+        // 将文本输入框的值设置为prompt值
+        userInput.value = prompt;
+        // 跳出循环
+        break;
+      }
+    }
+  }
+});
+</script>
 </body>
 
 </html>
