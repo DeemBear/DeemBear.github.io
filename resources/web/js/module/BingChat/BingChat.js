@@ -1,5 +1,6 @@
-import nBGGFetch from "../aToos/nBGGFetch.js";
+import nBGGFetch from "../nBGGFetch.js";
 import BingChating from "./BingChating.js";
+import CookieID from "../CookieID.js";
 
 export default class BingChat{
     bingChating;
@@ -10,6 +11,8 @@ export default class BingChat{
     constructor(chatFirstMessages, chatOptionsSets) {
         this.chatFirstMessages = chatFirstMessages;
         this.chatOptionsSets = chatOptionsSets;
+
+
     }
 
     /**
@@ -37,12 +40,14 @@ export default class BingChat{
         if (!this.isStart()){
             throw new Error("聊天没有开始，需要先使用start方法开始聊天");
         }
-        return this.bingChating.sendMessage(text, onMessage);
+        return this.bingChating.sendMessage(text, (message,returnMessage)=>{
+            onMessage(message,returnMessage);
+        });
     }
 
     /**
      开始聊天
-     @param theChatType {'accurate','balance','create'} 聊天选项 默认平衡
+     @param theChatType {"Creative","Balanced","Precise"} 聊天选项 默认平衡
      @return {BingChat}
      @throws Error
      */
@@ -52,7 +57,8 @@ export default class BingChat{
         }
         let res
         try {
-            res = await nBGGFetch(`${window.location.origin}/turing/conversation/create`);
+            res = await nBGGFetch(`${window.location.origin}/turing/conversation/create`,
+                !CookieID.cookieID?undefined:{headers:{"cookieID":CookieID.cookieID}});
         } catch (e) {
             console.warn(e);
             throw e.isDeemBearError?e:new Error("无法连接到web服务器，请刷新页面重试:" + e.message);
@@ -87,11 +93,10 @@ export default class BingChat{
             }
             let error = new Error(mess);
             error.type = type;
-            error.cookieID = cookieID;
             throw error;
         }
-        this.bingChating = BingChating.create(this,resjson.conversationId, resjson.clientId, resjson.conversationSignature, theChatType);
-        this.bingChating.cookieID = cookieID;
+        this.bingChating = BingChating.create(this,resjson.conversationId, resjson.clientId, resjson.conversationSignature, theChatType,undefined);
+        CookieID.cookieID = cookieID;
         return this;
     }
 

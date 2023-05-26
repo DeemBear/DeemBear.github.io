@@ -5,6 +5,8 @@
  * @param noAddHeader {boolean,undefined} 是否不添加用于标示的请求头
  *
  * */
+import RandomAddress from "./RandomAddress.js";
+
 export default async function nBGGFetch(url,rr,noAddHeader){
     if(!noAddHeader){
         if(!rr){
@@ -14,13 +16,16 @@ export default async function nBGGFetch(url,rr,noAddHeader){
         }else {
             rr.headers['DeemBear'] = "true";
         }
+        rr.headers['randomAddress'] = RandomAddress.randomAddress;
     }
    let re = await fetch(url,rr)
-   if(re.headers.get('DeemBearError')){
+   if(re.headers.get('NewBingGoGoError')){
        let json = await re.json();
        let error= new Error(json.message);
        error.value = json.value;
        error.isNewBingGoGoError = true;
+       error.theType = json.type;// 自定义错误类型
+       error.theData = json.data;// 自定义错误数据
        throw error;
    }
    return re;

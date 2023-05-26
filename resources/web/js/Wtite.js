@@ -3,6 +3,7 @@ import TitleWorker from './module/TitleWorker.js'
 import BingChat from './module/BingChat/BingChat.js';
 import ChatFirstMessages from "./module/BingChat/ChatFirstMessages.js";
 import ChatOptionsSets_Write from "./module/BingChat/ChatOptionsSets_Write.js";
+import {LoadAnimation} from "./module/aToos/AToos.js";
 
 /*控制按钮组选择，当选中新的按钮时回调函数*/
 function selectButtonFunRetrun(buttonGroup, returnFun) {
@@ -19,7 +20,7 @@ function selectButtonFunRetrun(buttonGroup, returnFun) {
 }
 
 //页面加载完成之后执行
-window.addEventListener('load',()=>{
+window.addEventListener('load',async ()=>{
 
     const chatOptionsSets_Write = new ChatOptionsSets_Write();
     const chatFirstMessages = new ChatFirstMessages();
@@ -128,16 +129,25 @@ window.addEventListener('load',()=>{
         if (!bingChat.isStart()) {
             isAskingToMagic();
             try {
-                await bingChat.start('balance');
+                await bingChat.start('Balanced');
             }catch (error){
                 console.warn(error);
                 parserReturnMessage.addError(error.message);
                 isSpeakingFinish();
-                if(error.cookieID==='self'){
+                if(window.location.protocol==="chrome-extension:"){
                     if(error.type==='NoLogin'){
                         parserReturnMessage.addNoLogin();
                     }else if (error.type==='NoPower'){
                         parserReturnMessage.addNoPower();
+                    }else if(error.theType === "cf-mitigated"){
+                        let reUrl = error.theData;
+                        if(reUrl){
+                            let rUrl = new URL(reUrl);
+                            let myUrl = new URL(location.href);
+                            myUrl.searchParams.append("sendMessage",text);
+                            rUrl.searchParams.set("redirect",myUrl.toString());
+                            window.location.href = rUrl.toString();
+                        }
                     }
                 }
                 return;
@@ -159,7 +169,7 @@ window.addEventListener('load',()=>{
     }
 
 
-    send_button.onclick = async ()=>{
+    let sendOnclick = async ()=>{
         if (isSpeaking) {
             return;
         }
@@ -176,10 +186,21 @@ window.addEventListener('load',()=>{
         //发送
         send(text).then();
     };
+    send_button.onclick = sendOnclick;
 
 
+    LoadAnimation.loaded(document.getElementById('load'));
 
-    reSetStartChatMessage().then();
+    await reSetStartChatMessage();
+    //如果有发送第一条消息的参数
+    let url = new URL(window.location.href);
+    let sendMessage = url.searchParams.get("sendMessage");
+    if(sendMessage){
+        input_text.value = sendMessage;
+        await sendOnclick();
+        url.searchParams.delete("sendMessage");
+        window.history.pushState('','',url.toString());
+    }
 });
 
 

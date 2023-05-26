@@ -9,9 +9,11 @@ export default class ReturnMessage {
     //(WebSocket,function:可以不传)
     /**
      * @param catWebSocket {WebSocket} 聊天的ebSocket
-     * @param lisin {function} 回调函数
+     * @param lisin {function(Object,ReturnMessage)} 回调函数
+     * @param bingChating {BingChating}
      */
-    constructor(catWebSocket, lisin) {
+    constructor(catWebSocket, lisin,bingChating) {
+        this.bingChating = bingChating;
         this.catWebSocket = catWebSocket;
         this.onMessage = [(v) => {
             console.log(v)
@@ -44,7 +46,7 @@ export default class ReturnMessage {
                         this.onMessage[i]({
                             type: 'close',
                             ok:this.closed,
-                            mess: event
+                            mess: event.reason
                         }, this);
                     } catch (e) {
                         console.warn(e)
@@ -59,7 +61,7 @@ export default class ReturnMessage {
                     try {
                         this.onMessage[i]({
                             type: 'error',
-                            mess: mess
+                            mess: mess.message?mess.message:"异常中断"
                         }, this);
                     } catch (e) {
                         console.warn(e)
@@ -68,13 +70,24 @@ export default class ReturnMessage {
             }
         }
     }
- 
+
     /**
      * 注册接收消息的监听器
-     * @param theFun 回调函数
+     * @param theFun {function(message)} 回调函数
      */
     regOnMessage(theFun) {
         this.onMessage[this.onMessage.length] = theFun;
+    }
+    /**
+     * 取消注册接收消息监听器
+     * */
+    outOnMessage(theFun){
+        for (let i = 0; i < this.onMessage.length; i++) {
+            if (this.onMessage[i] === theFun) {
+                this.onMessage.splice(i,1);
+                return;
+            }
+        }
     }
 
     /**
