@@ -3,3 +3,6 @@ pk-this-is-a-real-free-api-key-pk-for-everyone
 API地址是 ai.fakeopen.com
 第一个是大 fk 池
 第二个是大 sk 池
+api2d.net
+apiKey
+searchKey
