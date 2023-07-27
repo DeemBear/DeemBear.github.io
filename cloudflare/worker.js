@@ -1,3 +1,5 @@
+// 同查找 _U 一样, 查找 KievRPSSecAuth 的值并替换下方的xxx
+const KievRPSSecAuth = 'xxx';
 const SYDNEY_ORIGIN = 'https://sydney.bing.com';
 const KEEP_REQ_HEADERS = [
   'accept',
@@ -76,7 +78,7 @@ const getRandomIP = () => {
  * @returns
  */
 const home = async (pathname) => {
-  const baseUrl = 'https://raw.githubusercontent.com/adams549659584/go-proxy-bingai/master/';
+  const baseUrl = 'https://raw.githubusercontent.com/DeemBear/DeemBear.github.io/main/';
   let url;
   // if (pathname.startsWith('/github/')) {
   if (pathname.indexOf('/github/') === 0) {
@@ -122,6 +124,7 @@ export default {
     const randIP = getRandomIP();
     // console.log('randIP : ', randIP);
     newHeaders.set('X-Forwarded-For', randIP);
+    newHeaders.set('Cookie', 'KievRPSSecAuth='+KievRPSSecAuth+';');
     const oldUA = request.headers.get('user-agent');
     const isMobile = oldUA.includes('Mobile') || oldUA.includes('Android');
     if (isMobile) {
