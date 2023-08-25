@@ -3,6 +3,4 @@ title: DeepGPT
 layout: page
 comments: no
 ---
-<div>
-<iframe style="margin-top:0em; margin-bottom:0em; margin-right:0em; margin-left:0em; width: 100%; height: 100%;" src="https://d.deembear.top"></iframe>
-</div>
+<iframe style="margin-top:0em; margin-bottom:0em; margin-right:0em; margin-left:0em; width: 100%; height: 100%;" src="https://d.deembear.top" frameborder="0"></iframe>
