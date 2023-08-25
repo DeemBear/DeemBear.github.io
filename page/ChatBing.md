@@ -1,6 +1,6 @@
 ---
-title: 关于
+title: ChatBing
 layout: page
 comments: no
 ---
-<iframe src="https://a.deembear.top"</iframe>
+<iframe src="https://a.deembear.top"></iframe>
