@@ -54418,7 +54418,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 									"Ocp-Apim-Subscription-Key": Ve
 								}
 							}) : await fetch(
-							"https://oa.api2d.net/custom_api/186008/search?q=" +
+							"https://oa.api2d.net/custom_api/214163/search?q=" +
 							encodeURIComponent(Q), {
 								headers: {
 									Authorization: `Bearer ${pe.current.key}`
@@ -54432,7 +54432,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 							})) : !1
 					}, pe.current.fetch = async Q => {
 						const Z = await (await fetch(
-							"https://oa.api2d.net/custom_api/186008/fetch?url=" +
+							"https://oa.api2d.net/custom_api/214163/fetch?url=" +
 							encodeURIComponent(Q), {
 								headers: {
 									Authorization: `Bearer ${pe.current.key}`
@@ -66064,7 +66064,7 @@ Expecting ` + T.join(", ") + ", got '" + (this.terminals_[m] || m) + "'" : O = "
 					_editNodeNewName: "",
 					_editNodeId: "",
 					apiKey: "deembear",
-					apiEndpoint: "https://oa.api2d.net",
+					apiEndpoint: "https://net.deembear.top",
 					apiTemperature: .9,
 					apiMaxTokens: "",
 					isShowSettingsEditor: !1,
@@ -67924,7 +67924,7 @@ ${a.output}`).join(`
 																					0,
 																				icon: "key",
 																				intent: "primary",
-																				href: "https://api2d.com/r/186008",
+																				href: "https://api2d.com/r/214163",
 																				target: "_blank",
 																				children: ""
 																			}
