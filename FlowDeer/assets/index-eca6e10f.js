@@ -65776,8 +65776,8 @@ Expecting ` + T.join(", ") + ", got '" + (this.terminals_[m] || m) + "'" : O = "
 			"text-center text-sm text-white bg-gray-300 w-fit mx-auto p-1 rounded hover:bg-gray-700",
 			h = parseInt(e.maxTokens) || 0,
 			m = parseFloat(e.temperature) ?? .9,
-			b = e.apiKey || "deembear",
-			y = e.apiEndpoint || "https://net.deembear.top",
+			b = e.apiKey || "",
+			y = e.apiEndpoint || "https://oa.api2d.net",
 			B = e.model || "gpt-3.5-turbo-16k",
 			S = () => {
 				try {
@@ -66063,7 +66063,7 @@ Expecting ` + T.join(", ") + ", got '" + (this.terminals_[m] || m) + "'" : O = "
 					isShowNameEditor: !1,
 					_editNodeNewName: "",
 					_editNodeId: "",
-					apiKey: "",
+					apiKey: "deembear",
 					apiEndpoint: "https://oa.api2d.net",
 					apiTemperature: .9,
 					apiMaxTokens: "",
