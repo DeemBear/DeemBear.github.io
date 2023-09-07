@@ -1,0 +1,3 @@
+[submodule "DeepGPT"]
+	path = DeepGPT
+	url = git@github.com:DeemBear/DeemBear.github.io/DeepGPT.git
