@@ -1,10 +1,8 @@
 ---
+layout: page
 title: ChatTTS
-date: 2021-07-29 14:57:01
-permalink: /ChatTTS
-article: false
-math: true
 ---
+
 
     <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
     <link rel="icon" type="image/png" href="icon.png">
