@@ -3,7 +3,6 @@ layout: page
 title: ChatTTS
 ---
 
-<!DOCTYPE html>
 <html lang="zh-cn">
   <head>
     <meta charset="UTF-8" />
