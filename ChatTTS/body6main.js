@@ -2461,7 +2461,7 @@ const streamGen = async (long) => {
 												if (chunk) {
 														let payload;
 														try {
-																payload = JSON.parse(chunk.slice(6));
+																payload = JSON.parse(chunk.slice(5));
 														} catch (e) {
 																break;
 														}
