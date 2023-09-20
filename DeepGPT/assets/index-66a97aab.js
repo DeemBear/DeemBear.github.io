@@ -52079,13 +52079,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 				defaultValue: []
 			}),
 			[Te, ln] = ct("apiKey", {
-				defaultValue: "deembear"
+				defaultValue: "sk-jaXLy9Vjb8caJFzt6fFaD59837Be4517AcB5AeAe6d0cB270"
 			}),
 			[it, qt] = ct("searchKey", {
 				defaultValue: "123"
 			}),
 			[Rn, Wn] = ct("endpoint", {
-				defaultValue: "https://net.deembear.top"
+				defaultValue: "https://one.deembear.top"
 			}),
 			[Or, ys] = ct("maxSubTasks", {
 				defaultValue: 3
