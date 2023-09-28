@@ -52085,7 +52085,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 				defaultValue: "123"
 			}),
 			[Rn, Wn] = ct("endpoint", {
-				defaultValue: "https://one.deembear.top"
+				defaultValue: "https://net.deembear.top"
 			}),
 			[Or, ys] = ct("maxSubTasks", {
 				defaultValue: 3

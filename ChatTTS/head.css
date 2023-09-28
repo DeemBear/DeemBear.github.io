@@ -405,6 +405,10 @@ body {
     background: var(--response-color) !important;
 }
 
+#chatlog .markdown-body a {
+		padding: 0 2px;
+}
+
 #chatlog .markdown-body>pre {
     padding: 10px;
     position: relative;
