@@ -81,125 +81,6 @@ const getUnescape = html => {
 const escapeRegExp = (str) => {
 		return str.replace(/[\\\{\}\*\+\?\|\^\$\.\[\]\(\)]/g, '\\$&');
 }
-const formatDate = date => {
-		const year = date.getFullYear();
-		const month = (date.getMonth() + 1).toString().padStart(2, "0");
-		const day = date.getDate().toString().padStart(2, "0");
-		return `${year}-${month}-${day}`;
-}
-const checkBill = async () => {
-		let headers = {"Content-Type": "application/json"};
-		if (customAPIKey) headers["Authorization"] = "Bearer " + customAPIKey;
-		let subCtrl = new AbortController();
-		setTimeout(() => {
-				subCtrl.abort();
-		}, 20000);
-		let subRes;
-		try {
-				subRes = await fetch(apiHost + "v1/dashboard/billing/subscription", {
-						headers,
-						signal: subCtrl.signal
-				});
-				if (subRes.status !== 200) return;
-		} catch (e) {
-				return;
-		}
-		const subData = await subRes.json();
-		const totalQuota = subData.hard_limit_usd;
-		const isSubsrcibed = subData.has_payment_method;
-		const urlUsage = apiHost + "v1/dashboard/billing/usage?";
-		let useCtrl = new AbortController();
-		const nowDate = new Date(new Date().getTime() + dayMs);
-		let usedData;
-		let expired;
-		setTimeout(() => {
-				useCtrl.abort();
-		}, 20000);
-		if (isSubsrcibed) {
-				const subDate = new Date();
-				subDate.setDate(1);
-				try {
-						const useRes = await fetch(urlUsage + `start_date=${formatDate(subDate)}&end_date=${formatDate(nowDate)}`, {
-								headers,
-								signal: useCtrl.signal
-						});
-						const useJson = await useRes.json();
-						usedData = useJson.total_usage / 100;
-				} catch (e) {
-						return;
-				}
-		} else {
-				let urls = [];
-				const expireTime = subData.access_until * 1000;
-				expired = new Date(expireTime);
-				const startDate = new Date(expireTime - 128 * dayMs);
-				const midDate = new Date(expireTime - 64 * dayMs);
-				const endDate = new Date(expireTime + dayMs);
-				if (nowDate < midDate) {
-						urls.push(`start_date=${formatDate(startDate)}&end_date=${formatDate(nowDate)}`);
-				} else if (nowDate < endDate) {
-						urls.push(`start_date=${formatDate(startDate)}&end_date=${formatDate(midDate)}`);
-						if (formatDate(nowDate) !== formatDate(midDate)) {
-								urls.push(`start_date=${formatDate(midDate)}&end_date=${formatDate(nowDate)}`);
-						}
-				} else {
-						urls.push(`start_date=${formatDate(startDate)}&end_date=${formatDate(midDate)}`);
-						urls.push(`start_date=${formatDate(midDate)}&end_date=${formatDate(endDate)}`);
-				}
-				try {
-						const uses = await Promise.all(urls.map(async url => {
-								return new Promise((res, rej) => {
-										fetch(urlUsage + url, {
-												headers,
-												signal: useCtrl.signal
-										}).then(response => {
-												response.json().then(json => {
-														if (json.total_usage !== void 0) res(json.total_usage);
-														else rej();
-												});
-										}).catch(() => {
-												rej();
-										})
-								})
-						}));
-						usedData = uses.reduce((prev, curr) => prev + curr, 0) / 100;
-				} catch (e) {
-						return;
-				}
-		}
-		if (usedData > totalQuota) usedData = totalQuota;
-		return [totalQuota, usedData, isSubsrcibed, expired];
-}
-let checkingBill = false;
-checkBillBtn.onclick = async () => {
-		if (checkingBill) return;
-		checkingBill = true;
-		checkBillBtn.className = "loading";
-		quotaContent.style.display = "none";
-		try {
-				let res = await checkBill();
-				if (!res) throw new Error("API error");
-				let [total, used, isSub, exp] = res;
-				usedQuotaBar.style.width = (used / total * 100).toFixed(2) + "%";
-				usedQuotaBar.parentElement.classList.remove("expiredBar");
-				usedQuota.textContent = "$" + used.toFixed(2);
-				let remain = total - used;
-				availableQuota.textContent = "$" + Math.floor(remain * 100) / 100;
-				if (isSub) {
-						quotaTitle.textContent = translations[locale]["thisQuota"];
-				} else {
-						let isExpired = new Date() > exp;
-						if (isExpired) usedQuotaBar.parentElement.classList.add("expiredBar");
-						let accessDate = formatDate(exp);
-						quotaTitle.innerHTML = translations[locale]["freeTierTip"] + `<span style="color: ${isExpired ? "#e15b64" : "#99c959"} ">${accessDate}</span>`;
-				}
-				quotaContent.style.display = "block";
-		} catch (e) {
-				notyf.error(translations[locale]["errorAiKeyTip"]);
-		}
-		checkingBill = false;
-		checkBillBtn.className = "loaded";
-}
 const checkStorage = () => {
 		let used = 0;
 		for (let key in localStorage) {
@@ -313,7 +194,7 @@ const codeUtils = {
 				return (res && res[1]) || "";
 		},
 		getFragment(str = "") {
-				return str ? `<span class="u-mdic-copy-code_lang">${str}</span>` : "";
+				return str ? `<span class="u-mdic-copy-code_lang" text="${str}"></span>` : "";
 		},
 };
 const getCodeLangFragment = (oriStr = "") => {
@@ -362,11 +243,8 @@ const enhanceCode = (render, options = {}) => (...args) => {
 		const tpls = [
 				'<div class="m-mdic-copy-wrapper">',
 				`${langFrag}`,
-				`<div class="u-mdic-copy-notify" style="display:none;">${successText}</div>`,
-				'<button ',
-				'class="u-mdic-copy-btn j-mdic-copy-btn" ',
-				`data-mdic-notify-delay="${successTextDelay}" `,
-				`onclick="copyClickCode(this)">${btnText}</button>`,
+				`<div class="u-mdic-copy-notify" style="display:none;" text="${successText}"></div>`,
+				`<button class="u-mdic-copy-btn j-mdic-copy-btn" text="${btnText}" data-mdic-notify-delay="${successTextDelay}" onclick="copyClickCode(this)"></button>`,
 				'</div>',
 		];
 		return originResult.replace("</pre>", `${tpls.join("")}</pre>`);
@@ -1205,6 +1083,7 @@ searchChatEle.oninput = (ev) => {
 document.getElementById("resetHotKey").onclick = () => {
 		localStorage.removeItem("hotKeys");
 		initHotKey();
+		notyf.success(translations[locale]["resetSetSuccTip"]);
 };
 const blobToText = (blob) => {
 		return new Promise((res, rej) => {
@@ -1550,7 +1429,6 @@ const initSetting = () => {
 		let localKey = localStorage.getItem("APIKey");
 		customAPIKey = keyEle.value = envAPIKey || localKey || keyEle.getAttribute("value") || "";
 		keyEle.onchange = () => {
-				quotaContent.style.display = "none";
 				//if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){customAPIKey=envPOEAPIKey}//新增
 				customAPIKey = keyEle.value;
 				//if (customAPIKey.length && !customAPIKey.endsWith("/")) {//新增
@@ -2144,7 +2022,7 @@ const downloadAudio = async (idx) => {
 		let pitch = voicePitch[type];
 		let style = azureStyle[type];
 		let role = azureRole[type];
-		let content = data[idx].content;
+		let content = mdProcess(data[idx].content);
 		let key = content + voice + volume + rate + pitch + (style ? style : "") + (role ? role : "");
 		let blob = voiceData[key];
 		if (blob) {
@@ -2212,7 +2090,7 @@ const speechEvent = async (idx) => {
 		chatlog.children[systemRole ? idx - 1 : idx].classList.add("showVoiceCls");
 		let voiceIconEle = chatlog.children[systemRole ? idx - 1 : idx].lastChild.lastChild;
 		voiceIconEle.className = "voiceCls pauseVoice";
-		let content = data[idx].content.replace(/[*#]/g, '');
+		let content = mdProcess(data[idx].content);
 		let volume = voiceVolume[type];
 		let rate = voiceRate[type];
 		let pitch = voicePitch[type];
@@ -2309,7 +2187,7 @@ let voiceBlobURLQuene = [];
 let autoOnlineVoiceFlag = false;
 const autoAddQuene = () => {
 		if (voiceContentQuene.length) {
-				let content = voiceContentQuene.shift();
+				let content = mdProcess(voiceContentQuene.shift());
 				let currDate = getTime();
 				let uuid = uuidv4();
 				let voice = voiceRole[1].Name;
@@ -2465,7 +2343,7 @@ const streamGen = async (long) => {
 		controllerId = setTimeout(() => {
 				notyf.error(translations[locale]["timeoutTip"]);
 				stopLoading();
-		}, 120000);
+		}, 200000);
 		let isRefresh = refreshIdx !== void 0;
 		if (isRefresh) {
 				currentResEle = chatlog.children[systemRole ? refreshIdx - 1 : refreshIdx];

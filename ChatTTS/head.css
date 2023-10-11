@@ -291,7 +291,7 @@ body {
 }
 
 .messages::-webkit-scrollbar,
-#chatlog .markdown-body>pre>code::-webkit-scrollbar,
+#chatlog .markdown-body pre>code::-webkit-scrollbar,
 #setDialog::-webkit-scrollbar,
 .allList::-webkit-scrollbar,
 .sysDetail::-webkit-scrollbar,
@@ -301,7 +301,7 @@ body {
 }
 
 .messages::-webkit-scrollbar-track,
-#chatlog .markdown-body>pre>code::-webkit-scrollbar-track,
+#chatlog .markdown-body pre>code::-webkit-scrollbar-track,
 #setDialog::-webkit-scrollbar-track,
 .allList::-webkit-scrollbar-track,
 .sysDetail::-webkit-scrollbar-track,
@@ -312,7 +312,7 @@ body {
 }
 
 .messages::-webkit-scrollbar-corner,
-#chatlog .markdown-body>pre>code::-webkit-scrollbar-corner,
+#chatlog .markdown-body pre>code::-webkit-scrollbar-corner,
 #setDialog::-webkit-scrollbar-corner,
 .allList::-webkit-scrollbar-corner,
 .sysDetail::-webkit-scrollbar-corner,
@@ -321,7 +321,7 @@ body {
 }
 
 .messages::-webkit-scrollbar-thumb,
-#chatlog .markdown-body>pre>code::-webkit-scrollbar-thumb,
+#chatlog .markdown-body pre>code::-webkit-scrollbar-thumb,
 #setDialog::-webkit-scrollbar-thumb,
 .allList::-webkit-scrollbar-thumb,
 .sysDetail::-webkit-scrollbar-thumb,
@@ -333,7 +333,7 @@ body {
 }
 
 .messages::-webkit-scrollbar-thumb:hover,
-#chatlog .markdown-body>pre>code::-webkit-scrollbar-thumb:hover,
+#chatlog .markdown-body pre>code::-webkit-scrollbar-thumb:hover,
 #setDialog::-webkit-scrollbar-thumb:hover,
 .allList::-webkit-scrollbar-thumb:hover,
 .sysDetail::-webkit-scrollbar-thumb:hover,
@@ -406,18 +406,22 @@ body {
 }
 
 #chatlog .markdown-body a {
-		padding: 0 2px;
+		padding: 0 1px 0 2px;
 }
 
-#chatlog .markdown-body>pre {
+#chatlog .markdown-body pre {
     padding: 10px;
     position: relative;
     background: var(--code-color);
 }
 
-#chatlog .markdown-body>pre>code {
+#chatlog .markdown-body pre>code {
     overflow-x: auto;
     display: block;
+}
+
+#chatlog .markdown-body ul {
+		list-style-type: disc;
 }
 
 .m-mdic-copy-wrapper {
@@ -470,6 +474,12 @@ body {
     outline: none;
     cursor: pointer;
     transition: color 250ms;
+}
+
+.m-mdic-copy-wrapper span.u-mdic-copy-code_lang::before,
+.m-mdic-copy-wrapper div.u-mdic-copy-notify::before,
+.m-mdic-copy-wrapper button.u-mdic-copy-btn::before {
+		content: attr(text);
 }
 
 .m-mdic-copy-wrapper button.u-mdic-copy-btn:hover {
@@ -1383,14 +1393,57 @@ input[type=range]::-webkit-slider-runnable-track {
     text-align: center;
 }
 
-#loadMask svg {
-    width: 160px;
-    height: 80px;
+@keyframes loading {
+
+		0%,
+		100% {
+				transform: scale(0);
+		}
+
+		50% {
+				transform: scale(1);
+		}
 }
 
-#loadMask>div>div {
+.loadingCSSIcon {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+}
+
+.loadingCSSIcon div {
+		width: 15%;
+		height: 0;
+		padding-bottom: 15%;
+		border-radius: 50%;
+		animation: loading 1s cubic-bezier(0.3, 0, 0.7, 1) infinite;
+}
+
+.loadingCSSIcon div:nth-child(1) {
+		background: #e15b64;
+		animation-delay: -0.4s
+}
+
+.loadingCSSIcon div:nth-child(2) {
+		background: #f8b26a;
+		animation-delay: -0.2s
+}
+
+.loadingCSSIcon div:nth-child(3) {
+		background: #99c959;
+		animation-delay: 0s;
+}
+
+#loadMask>div>:first-child {
     font-size: 40px;
     color: var(--text-color);
+}
+
+#loadMask>div>:last-child {
+		width: 140px;
+		height: 70px;
+		margin: 0 auto;
 }
 
 #voiceRec {
@@ -1627,6 +1680,8 @@ input[type=range]::-webkit-slider-runnable-track {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 8px;
+		-webkit-user-select: none;
+		user-select: none;
 }
 
 .sysSwitch,
@@ -1684,10 +1739,19 @@ input[type=range]::-webkit-slider-runnable-track {
 .setTitle {
     margin-bottom: 6px;
     font-weight: bold;
+		-webkit-user-select: none;
+		user-select: none;
 }
 
 .setDetail {
     margin: 0 10px;
+		-webkit-user-select: none;
+		user-select: none;
+}
+
+.autoSelect>label,
+.autoSelect>input {
+		cursor: pointer;
 }
 
 .dataDetail {
@@ -1893,10 +1957,6 @@ input[type=range]::-webkit-slider-runnable-track {
     border-radius: 6px;
     background: var(--active-btn);
     overflow: hidden;
-}
-
-.expiredBar {
-    background: #e15b64;
 }
 
 .nowProgress {

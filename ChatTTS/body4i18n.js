@@ -15,7 +15,7 @@ setLangEle.onclick = (ev) => {
 		}
 }
 const initLang = () => {
-		let localLang = localStorage.getItem("UILang") || "zh";
+		let localLang = localStorage.getItem("UILang") || (navigator.language.startsWith("zh-") ? "zh" : "en");
 		let isInit = locale === void 0;
 		if (locale !== localLang) {
 				locale = localLang;
@@ -122,7 +122,6 @@ const translations = {
 				"endDark": "End",
 				"aiEndpoint": "OpenAI endpoint",
 				"aiKey": "OpenAI API key",
-				"checkBill": "Check bill",
 				"used": "Used ",
 				"available": "Avail ",
 				"navKey": "Toggle nav",
@@ -131,7 +130,7 @@ const translations = {
 				"themeKey": "Toggle lang",
 				"inputKey": "Message",
 				"voiceKey": "Voice",
-				"resetHotKeyTip": "Restore default",
+				"resetTip": "Restore default",
 				"recKey": "Recognition",
 				"speechKey": "Start speech",
 				"export": "Export",
@@ -144,8 +143,6 @@ const translations = {
 				"noMicTip": "No microphone was found. Ensure that a microphone is installed and microphone settings are configured correctly.",
 				"noMicPerTip": "Permission to use microphone is blocked.",
 				"azureInvalidTip": "Access is denied due to invalid access key or API endpoint!",
-				"thisQuota": "This month's quota",
-				"freeTierTip": "Free tier - valid until: ",
 				"errorAiKeyTip": "Invalid or incorrect API key, please check API key!",
 				"copyCode": "Copy code",
 				"copySuccess": "Success",
@@ -279,7 +276,6 @@ const translations = {
 				"endDark": "结束时间",
 				"aiEndpoint": "OpenAI接口",
 				"aiKey": "API密钥",
-				"checkBill": "检查API额度",
 				"used": "已用 ",
 				"available": "可用 ",
 				"navKey": "切换导航",
@@ -288,7 +284,7 @@ const translations = {
 				"langKey": "切换语言",
 				"inputKey": "输入框",
 				"voiceKey": "语音",
-				"resetHotKeyTip": "恢复默认设值",
+				"resetTip": "重置设置",
 				"recKey": "语音输入",
 				"speechKey": "朗读会话",
 				"export": "导出",
@@ -301,8 +297,6 @@ const translations = {
 				"noMicTip": "未识别到麦克风，请确保已安装麦克风！",
 				"noMicPerTip": "未允许麦克风权限！",
 				"azureInvalidTip": "由于订阅密钥无效或 API 端点错误，访问被拒绝！",
-				"thisQuota": "本月额度",
-				"freeTierTip": "免费额度-有效期至: ",
 				"errorAiKeyTip": "API密钥错误或失效，请检查API密钥！",
 				"copyCode": "复制代码",
 				"copySuccess": "复制成功",
@@ -366,15 +360,6 @@ const initLocale = () => {
 				let key = isFull ? "winedWin" : "fullWin";
 				ele.setAttribute("title", translations[locale][key])
 		})
-		document.querySelectorAll("[data-i18n-quota]").forEach(ele => {
-				let splitIdx = ele.innerHTML.indexOf(":");
-				if (splitIdx === -1) {
-						ele.textContent = translations[locale]["thisQuota"];
-				} else {
-						let validHtml = ele.innerHTML.slice(splitIdx + 2);
-						ele.innerHTML = translations[locale]["freeTierTip"] + validHtml;
-				}
-		})
 		document.head.children[3].setAttribute("content", translations[locale]["description"])
 };
 initLocale();
@@ -406,10 +391,10 @@ const changeLocale = () => {
 				ele.textContent = num + translations[locale]["chats"];
 		});
 		document.querySelectorAll(".u-mdic-copy-btn").forEach(ele => {
-				ele.textContent = translations[locale]["copyCode"];
+				ele.setAttribute("text", translations[locale]["copyCode"]);
 		})
 		document.querySelectorAll(".u-mdic-copy-notify").forEach(ele => {
-				ele.textContent = translations[locale]["copySuccess"];
+				ele.setAttribute("text", translations[locale]["copySuccess"]);
 		})
 		if (editingIdx !== void 0) {
 				document.querySelector("[data-i18n-key='send']").textContent = translations[locale]["update"];

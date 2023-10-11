@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="简洁而强大的ChatGPT应用">
     <meta name="theme-color" content="#edeff2">
@@ -13,7 +13,7 @@
     <meta name="msapplication-TileImage" content="icon.png">
     <link rel="manifest" crossorigin="use-credentials" href="manifest.json">
     <link rel="icon" type="image/png" href="icon.png">
-    <link rel="apple-touch-icon" href="icon.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="icon.png" sizes="512x512">
     <title>ChatGPT</title>
 
     <link href="head.css" rel="stylesheet">
@@ -93,16 +93,16 @@
             <symbol viewBox="0 0 200 100" preserveAspectRatio="xMidYMid" id="loadingIcon">
                 <g transform="translate(50 50)">
                     <circle cx="0" cy="0" r="15" fill="#e15b64">
-                        <animateTransform attributeName="transform" type="scale" begin="-0.3333333333333333s"
-                            calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" values="0;1;0" keyTimes="0;0.5;1"
-                            dur="1s" repeatCount="indefinite"></animateTransform>
+                        <animateTransform attributeName="transform" type="scale" begin="-0.4s" calcMode="spline"
+                            keySplines="0.3 0 0.7 1;0.3 0 0.7 1" values="0;1;0" keyTimes="0;0.5;1" dur="1s"
+                            repeatCount="indefinite"></animateTransform>
                     </circle>
                 </g>
                 <g transform="translate(100 50)">
                     <circle cx="0" cy="0" r="15" fill="#f8b26a">
-                        <animateTransform attributeName="transform" type="scale" begin="-0.16666666666666666s"
-                            calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" values="0;1;0" keyTimes="0;0.5;1"
-                            dur="1s" repeatCount="indefinite"></animateTransform>
+                        <animateTransform attributeName="transform" type="scale" begin="-0.2s" calcMode="spline"
+                            keySplines="0.3 0 0.7 1;0.3 0 0.7 1" values="0;1;0" keyTimes="0;0.5;1" dur="1s"
+                            repeatCount="indefinite"></animateTransform>
                     </circle>
                 </g>
                 <g transform="translate(150 50)">
@@ -222,9 +222,11 @@
     <div id="loadMask">
         <div>
             <div>ChatGPT</div>
-            <svg>
-                <use xlink:href="#loadingIcon" />
-            </svg>
+            <div class="loadingCSSIcon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
     <div class="chat_window">
@@ -688,11 +690,11 @@ one2net自带搜索，示例如下:</br>
                         </div>
                         <div class="setContent" id="autoDetail" style="display: none;font-size: 15px;">
                             <div class="setDetail">
-                                <div>
+                                <div class="autoSelect">
                                     <input type="radio" id="autoTheme1" name="autoLight" value="1" checked />
                                     <label for="autoTheme1" data-i18n-key="systemTheme"></label>
                                 </div>
-                                <div style="margin-top: 8px;">
+                                <div class="autoSelect" style="margin-top: 8px;">
                                     <input type="radio" id="autoTheme0" name="autoLight" value="0" />
                                     <label for="autoTheme0" data-i18n-key="customDarkTheme"></label>
                                 </div>
@@ -736,24 +738,6 @@ one2net自带搜索，示例如下:</br>
                             <div class="setDetail inputDetail apiDetail">
                                 <input class="inputTextClass" type="text" placeholder="sk-xxxxxx" id="keyInput"
                                     autocomplete="off" style="-webkit-text-security: disc;" />
-                                <div id="checkBillBtn" class="loaded">
-                                    <span data-i18n-key="checkBill"></span>
-                                    <svg style="margin:0 auto;height:34px;width:100%;">
-                                        <use xlink:href="#loadingIcon"></use>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="setContent" id="quotaContent" style="display: none;">
-                            <div class="setTitle" id="quotaTitle" data-i18n-quota></div>
-                            <div class="setDetail">
-                                <div class="progressBar">
-                                    <div class="nowProgress" id="usedQuotaBar"></div>
-                                </div>
-                                <div class="progressDetail">
-                                    <div><span data-i18n-key="used"></span><span id="usedQuota"></span></div>
-                                    <div><span data-i18n-key="available"></span><span id="availableQuota"></span></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -823,7 +807,7 @@ one2net自带搜索，示例如下:</br>
                                     <svg width="22" height="22" style="transform: scaleX(-1)">
                                         <use xlink:href="#refreshIcon" />
                                     </svg>
-                                    <span data-i18n-key="resetHotKeyTip"></span>
+                                    <span data-i18n-key="resetTip"></span>
                                 </div>
                             </div>
                         </div>

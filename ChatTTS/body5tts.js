@@ -47,6 +47,12 @@ let resetRecRes;
 let toggleRecEv;
 const isAndroid = /\bAndroid\b/i.test(navigator.userAgent);
 const isApple = /(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent);
+const isPWA = navigator.standalone || window.matchMedia("(display-mode: standalone)").matches;
+if (isPWA) {
+		let bottomEle = document.querySelector(".bottom_wrapper");
+		let footerEle = document.querySelector(".navFooter");
+		footerEle.style.marginBottom = bottomEle.style.marginBottom = "8px";
+};
 const dayMs = 8.64e7;
 refreshPage.onclick = () => {
 		if (confirmAction(translations[locale]["forceReTip"])) {
@@ -57,6 +63,9 @@ const noLoading = () => {
 		return !loading && (!currentResEle || currentResEle.dataset.loading !== "true")
 };
 inputAreaEle.focus();
+const mdProcess = (str) => {
+		return str.replace(/\[.*?\]\(((?:[^\(\)]|\([^\(\)]*\))*)\)/g, "")
+}
 const textInputEvent = () => {
 		if (noLoading()) sendBtnEle.classList.toggle("activeSendBtn", inputAreaEle.value.trim().length);
 		inputAreaEle.style.height = "47px";
@@ -148,7 +157,7 @@ const initRecSetting = () => {
 				};
 				let localLangIdx = 0;
 				let localDiaIdx = 0;
-				let localRecLang = localStorage.getItem("voiceRecLang") || "cmn-Hans-CN";
+				let localRecLang = localStorage.getItem("voiceRecLang") || langs[0][1][0];
 				if (localRecLang) {
 						let localIndex = langs.findIndex(item => {
 								let diaIdx = item.findIndex(lang => {return lang instanceof Array && lang[0] === localRecLang});
