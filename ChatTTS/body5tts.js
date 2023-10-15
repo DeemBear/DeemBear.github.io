@@ -63,9 +63,6 @@ const noLoading = () => {
 		return !loading && (!currentResEle || currentResEle.dataset.loading !== "true")
 };
 inputAreaEle.focus();
-const mdProcess = (str) => {
-		return str.replace(/\[.*?\]\(((?:[^\(\)]|\([^\(\)]*\))*)\)/g, "")
-}
 const textInputEvent = () => {
 		if (noLoading()) sendBtnEle.classList.toggle("activeSendBtn", inputAreaEle.value.trim().length);
 		inputAreaEle.style.height = "47px";

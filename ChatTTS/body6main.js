@@ -74,11 +74,11 @@ const getEscape = str => {
 		escapeTextarea.textContent = str;
 		return escapeTextarea.innerHTML;
 }
+const parser = new DOMParser();
 const getUnescape = html => {
-		escapeTextarea.innerHTML = html;
-		return escapeTextarea.textContent;
+		return parser.parseFromString(html, 'text/html').body.textContent;
 }
-const escapeRegExp = (str) => {
+const escapeRegexExp = (str) => { // from vscode src/vs/base/common/strings.ts escapeRegExpCharacters
 		return str.replace(/[\\\{\}\*\+\?\|\^\$\.\[\]\(\)]/g, '\\$&');
 }
 const checkStorage = () => {
@@ -186,8 +186,14 @@ const md = markdownit({
 });
 md.inline.ruler.after("emphasis", "sup", superscript);
 md.inline.ruler.after("emphasis", "sub", subscript);
-md.use(texmath, { engine: katex, delimiters: "dollars", katexOptions: { macros: { "\\RR": "\\mathbb{R}" } } })
-		.use(markdownitLinkAttributes, { attrs: { target: "_blank", rel: "noopener" } });
+md.use(texmath, { engine: katex, delimiters: "dollars", katexOptions: { macros: { "\\RR": "\\mathbb{R}" } } });
+md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+		let aIndex = tokens[idx].attrIndex("target");
+		if (tokens[idx + 1] && tokens[idx + 1].type === "image") tokens[idx].attrPush(["download", ""]);
+		else if (aIndex < 0) tokens[idx].attrPush(["target", "_blank"]);
+		else tokens[idx].attrs[aIndex][1] = "_blank";
+		return self.renderToken(tokens, idx, options);
+};
 const codeUtils = {
 		getCodeLang(str = "") {
 				const res = str.match(/ class="language-(.*?)"/);
@@ -251,12 +257,14 @@ const enhanceCode = (render, options = {}) => (...args) => {
 };
 md.renderer.rules.code_block = enhanceCode(md.renderer.rules.code_block);
 md.renderer.rules.fence = enhanceCode(md.renderer.rules.fence);
-md.renderer.rules.image = function (tokens, idx, options, env, slf) {
+md.renderer.rules.image = function (tokens, idx, options, env, self) {
 		let token = tokens[idx];
-		token.attrs[token.attrIndex("alt")][1] = slf.renderInlineAsText(token.children, options, env);
+		token.attrs[token.attrIndex("alt")][1] = self.renderInlineAsText(token.children, options, env);
 		token.attrSet("onload", "scrollToBottomLoad(this);this.removeAttribute('onload');this.removeAttribute('onerror')");
 		token.attrSet("onerror", "scrollToBottomLoad(this);this.removeAttribute('onload');this.removeAttribute('onerror')");
-		return slf.renderToken(tokens, idx, options)
+		token.attrPush(["decoding", "async"]);
+		token.attrPush(["loading", "lazy"]);
+		return self.renderToken(tokens, idx, options)
 }
 let currentVoiceIdx;
 let editingIdx;
@@ -1020,7 +1028,7 @@ const toSearchChats = () => {
 				let chatEle = getChatEle(i);
 				chatEle.style.display = null;
 				let flags = isCaseSearch ? "" : "i";
-				let pattern = escapeRegExp(searchChatEle.value);
+				let pattern = escapeRegexExp(searchChatEle.value);
 				let regex = new RegExp(pattern, flags);
 				let nameData = chatsData[i].name.match(regex);
 				let nameIdx = nameData ? nameData.index : -1;
@@ -1587,6 +1595,8 @@ const initSetting = () => {
 		const setDarkTheme = (is) => {
 				let cssEle = document.body.getElementsByTagName("link")[0];
 				cssEle.href = cssEle.href.replace(is ? "light" : "dark", is ? "dark" : "light");
+				let hlCssEle = document.body.getElementsByTagName("link")[1];
+				hlCssEle.href = hlCssEle.href.replace(is ? "github" : "github-dark", is ? "github-dark" : "github");
 				justDarkTheme(is);
 		}
 		const handleAutoMode = (ele) => {
@@ -2022,7 +2032,7 @@ const downloadAudio = async (idx) => {
 		let pitch = voicePitch[type];
 		let style = azureStyle[type];
 		let role = azureRole[type];
-		let content = mdProcess(data[idx].content);
+		let content = chatlog.children[systemRole ? idx - 1 : idx].children[1].textContent;
 		let key = content + voice + volume + rate + pitch + (style ? style : "") + (role ? role : "");
 		let blob = voiceData[key];
 		if (blob) {
@@ -2090,7 +2100,7 @@ const speechEvent = async (idx) => {
 		chatlog.children[systemRole ? idx - 1 : idx].classList.add("showVoiceCls");
 		let voiceIconEle = chatlog.children[systemRole ? idx - 1 : idx].lastChild.lastChild;
 		voiceIconEle.className = "voiceCls pauseVoice";
-		let content = mdProcess(data[idx].content);
+		let content = chatlog.children[systemRole ? idx - 1 : idx].children[1].textContent;
 		let volume = voiceVolume[type];
 		let rate = voiceRate[type];
 		let pitch = voicePitch[type];
@@ -2187,7 +2197,7 @@ let voiceBlobURLQuene = [];
 let autoOnlineVoiceFlag = false;
 const autoAddQuene = () => {
 		if (voiceContentQuene.length) {
-				let content = mdProcess(voiceContentQuene.shift());
+				let content = getUnescape(md.render(voiceContentQuene.shift()));
 				let currDate = getTime();
 				let uuid = uuidv4();
 				let voice = voiceRole[1].Name;
