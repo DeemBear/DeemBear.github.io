@@ -943,10 +943,15 @@ one2net自带搜索，示例如下:</br>
 										let res = await response.json();
 										for (let i = 0; i < res.length; i++) {
 												let key = "act" + i;
-												presetRoleData[key] = res[i].prompt.trim();
+
+												let url = res[i].prompt.trim();
+												let urlRes = await fetch(url);
+												presetRoleData[key] = await urlRes.text();
+
 												let optionEle = document.createElement("option");
 												optionEle.text = res[i].act;
 												optionEle.value = await fetch(key);
+                        optionEle.value = key;
 												preEle.options.add(optionEle);
 										}
 								}).catch(e => { })
