@@ -13,6 +13,6 @@
 	},
 	{
 		"act": "召唤专家",
-		"prompt": "https://gcore.jsdelivr.net/gh/ProfSynapse/Synapse_CoR/prompt.txt"
+		"prompt": "https://raw.githubusercontent.com/ProfSynapse/Synapse_CoR/main/prompt.txt"
 	}
 ]
