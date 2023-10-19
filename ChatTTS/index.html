@@ -920,22 +920,8 @@ one2net自带搜索，示例如下:</br>
             }, 10000);
             preEle.options.length = 5;
 
-//加载自定义
-						fetch("/prompts-sys.json", {
-								signal: downRoleController.signal
-						}).then(async (response) => {
-								let res = await response.json();
-								for (let i = 0; i < res.length; i++) {
-										let key = "act" + i;
-										presetRoleData[key] = res[i].prompt.trim();
-										let optionEle = document.createElement("option");
-										optionEle.text = res[i].act;
-										optionEle.value = await fetch(key);
-										preEle.options.add(optionEle);
-								}
-						}).catch(e => { })
-
             if (locale === "zh") {
+/*
                 fetch("https://cdn.jsdelivr.net/gh/PlexPt/awesome-chatgpt-prompts-zh/prompts-zh.json", {
                     signal: downRoleController.signal
                 }).then(async (response) => {
@@ -949,6 +935,21 @@ one2net自带搜索，示例如下:</br>
                         preEle.options.add(optionEle);
                     }
                 }).catch(e => { })
+*/
+								//加载自定义
+								fetch("/prompts-sys.json", {
+										signal: downRoleController.signal
+								}).then(async (response) => {
+										let res = await response.json();
+										for (let i = 0; i < res.length; i++) {
+												let key = "act" + i;
+												presetRoleData[key] = res[i].prompt.trim();
+												let optionEle = document.createElement("option");
+												optionEle.text = res[i].act;
+												optionEle.value = await fetch(key);
+												preEle.options.add(optionEle);
+										}
+								}).catch(e => { })
             } else {
                 fetch("https://cdn.jsdelivr.net/gh/f/awesome-chatgpt-prompts/prompts.csv", {
                     signal: downRoleController.signal
