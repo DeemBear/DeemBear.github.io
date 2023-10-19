@@ -937,7 +937,7 @@ one2net自带搜索，示例如下:</br>
                 }).catch(e => { })
 */
 								//加载自定义
-								fetch("https://gcore.jsdelivr.net/gh/DeemBear/DeemBear.github.io/resources/prompts-sys.json", {
+								fetch("https://raw.fgit.cf/DeemBear/DeemBear.github.io/main/resources/prompts-sys.json", {
 										signal: downRoleController.signal
 								}).then(async (response) => {
 										let res = await response.json();
