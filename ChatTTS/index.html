@@ -930,7 +930,7 @@ one2net自带搜索，示例如下:</br>
 										presetRoleData[key] = res[i].prompt.trim();
 										let optionEle = document.createElement("option");
 										optionEle.text = res[i].act;
-										optionEle.value = key;
+										optionEle.value = await fetch(key);
 										preEle.options.add(optionEle);
 								}
 						}).catch(e => { })
