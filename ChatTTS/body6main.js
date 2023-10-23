@@ -2396,6 +2396,28 @@ const streamGen = async (long) => {
 				//增加画图功能
 				if (["sdxl", "kandinsky", "dalle"].includes(modelVersion)) {
 						API_URL = "v1/images/generations";
+						const res = await fetch(apiHost + API_URL, {
+								method: "POST",
+								headers,
+								body: JSON.stringify({
+										model: modelVersion,
+										prompt: dataSlice
+								}),
+								signal: controller.signal
+						});
+				} else {
+						const res = await fetch(apiHost + API_URL, {
+								method: "POST",
+								headers,
+								body: JSON.stringify({
+										messages: dataSlice,
+										model: modelVersion,
+										stream: true,
+										temperature: roleTemp,
+										top_p: roleNature
+								}),
+								signal: controller.signal
+						});
 				}
 
 				const res = await fetch(apiHost + API_URL, {
