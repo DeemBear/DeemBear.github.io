@@ -2400,30 +2400,21 @@ const streamGen = async (long) => {
 				//新增画图
 				if (modelVersion=="sdxl" || modelVersion=="kandinsky" || modelVersion=="dalle") {
 						API_URL = "v1/images/generations";
-						const res = await fetch(apiHost + API_URL, {
-								method: "POST",
-								headers,
-								body: JSON.stringify({
-										model: modelVersion,
-										prompt: progressData
-								}),
-								signal: controller.signal
-						});
-				} else {
-						const res = await fetch(apiHost + API_URL, {
-								method: "POST",
-								headers,
-								body: JSON.stringify({
-										messages: dataSlice,
-										model: modelVersion,
-										stream: true,
-										temperature: roleTemp,
-										top_p: roleNature
-								}),
-								signal: controller.signal
-						});
 				}
 
+				const res = await fetch(apiHost + API_URL, {
+						method: "POST",
+						headers,
+						body: JSON.stringify({
+								prompt: progressData,//新增画图
+								messages: dataSlice,
+								model: modelVersion,
+								stream: true,
+								temperature: roleTemp,
+								top_p: roleNature
+						}),
+						signal: controller.signal
+				});
 				clearTimeout(controllerId);
 				controllerId = void 0;
 				if (res.status !== 200) {
