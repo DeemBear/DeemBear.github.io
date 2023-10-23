@@ -1356,6 +1356,9 @@ const initSetting = () => {
         apiHost = apiHostEle.value = envAPIEndpoint || localApiHost || apiHostEle.getAttribute("value") || "";
         //if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
+
+        if (modelVersion=="sdxl" || modelVersion=="kandinsky" || modelVersion=="dalle"){API_URL = "v1/images/generations";}//新增画图
+
 		}
 		modelEle.dispatchEvent(new Event("change"));
 		const apiHostEle = document.getElementById("apiHostInput");
@@ -1422,6 +1425,7 @@ const initSetting = () => {
 		apiHostEle.onchange = () => {
         //if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint}//新增
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint}//新增
+
 				apiHost = apiHostEle.value;
 				//if (apiHost.length && !apiHost.endsWith("/")) {//新增
 						//apiHost += "/";//新增
@@ -2393,8 +2397,8 @@ const streamGen = async (long) => {
 				let headers = {"Content-Type": "application/json"};
 				if (customAPIKey) headers["Authorization"] = "Bearer " + customAPIKey;
 
-				//增加画图功能
-				if (["sdxl", "kandinsky", "dalle"].includes(modelVersion)) {
+				//新增画图
+				if (modelVersion=="sdxl" || modelVersion=="kandinsky" || modelVersion=="dalle") {
 						API_URL = "v1/images/generations";
 						const res = await fetch(apiHost + API_URL, {
 								method: "POST",
@@ -2420,18 +2424,6 @@ const streamGen = async (long) => {
 						});
 				}
 
-				const res = await fetch(apiHost + API_URL, {
-						method: "POST",
-						headers,
-						body: JSON.stringify({
-								messages: dataSlice,
-								model: modelVersion,
-								stream: true,
-								temperature: roleTemp,
-								top_p: roleNature
-						}),
-						signal: controller.signal
-				});
 				clearTimeout(controllerId);
 				controllerId = void 0;
 				if (res.status !== 200) {
