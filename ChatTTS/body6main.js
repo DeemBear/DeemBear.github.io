@@ -2395,16 +2395,10 @@ const streamGen = async (long) => {
 				let headers = {"Content-Type": "application/json"};
 				if (customAPIKey) headers["Authorization"] = "Bearer " + customAPIKey;
 
-				//新增画图
-				if (modelVersion=="sdxl" || modelVersion=="kandinsky" || modelVersion=="dalle") {
-						API_URL = "v1/images/generations";
-				}
-
 				const res = await fetch(apiHost + API_URL, {
 						method: "POST",
 						headers,
 						body: JSON.stringify({
-								prompt: progressData,//新增画图
 								messages: dataSlice,
 								model: modelVersion,
 								stream: true,
