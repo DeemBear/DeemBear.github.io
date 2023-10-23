@@ -2392,6 +2392,12 @@ const streamGen = async (long) => {
         dataSlice.splice(1,0,{role: "system",content: "\n当前时间："+ new Date().toLocaleString('zh-CN')})
 				let headers = {"Content-Type": "application/json"};
 				if (customAPIKey) headers["Authorization"] = "Bearer " + customAPIKey;
+
+				//增加画图功能
+				if (["sdxl", "kandinsky", "dalle"].includes(modelVersion)) {
+						API_URL = "v1/images/generations";
+				}
+
 				const res = await fetch(apiHost + API_URL, {
 						method: "POST",
 						headers,
