@@ -2405,7 +2405,7 @@ const streamGen = async (long) => {
 								headers,
 								body: JSON.stringify({
 										model: modelVersion,
-										prompt: dataSlice
+										prompt: progressData
 								}),
 								signal: controller.signal
 						});
