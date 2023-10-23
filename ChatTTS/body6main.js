@@ -1357,8 +1357,6 @@ const initSetting = () => {
         //if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
 
-        if (modelVersion=="sdxl" || modelVersion=="kandinsky" || modelVersion=="dalle"){API_URL = "v1/images/generations";}//新增画图
-
 		}
 		modelEle.dispatchEvent(new Event("change"));
 		const apiHostEle = document.getElementById("apiHostInput");
