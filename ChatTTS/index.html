@@ -289,11 +289,14 @@
                 <div class="divider"></div>
 one2net自带搜索，示例如下:</br>
 1、内容。WS[搜索词1]WS[词2]</br>
-2、鲁迅为什么要打周树人。WS[鲁迅打周树人]</br>
+2、鲁迅为什么要打周树人？WS[鲁迅打周树人]</br>
+切换画图模型可文生图</br>
+<!--
 3、给我现在的时间。WS[现在时间]WS[时区]</br>
 4、单独选择插件模型可精准触发插件功能，不适用于常规对话</br>
 直接发送'/upload'命令可触发上传功能，后续基于文件对话</br>
 自然语言触发画图、Python代码解释、图像描述功能</br>
+-->
                 <div class="links">
 <!--修改-->
                     <a href="https://ai.deembear.top/" target="_blank"
@@ -341,16 +344,29 @@ one2net自带搜索，示例如下:</br>
                             <label for="preSetModel" data-i18n-key="gptModel"></label>
                             <select id="preSetModel">
 <!--修改-->
+                                <option value="llama-2-13b-chat">llama_2_13b_chat</option>
+                                <option value="guanaco-13b">guanaco-13b</option>
+                                <option value="llava-13b">llava-13b</option>
+                                <option value="mythomax-13b">mythomax-13b</option>
+                                <option value="vicuna-13b-v1.5-16k">vicuna-13b-v1.5-16k</option>
                                 <option value="gpt-4-32k">gpt-4-32k</option>
                                 <option value="gpt-4">gpt-4</option>
                                 <option value="claude-2">claude-2</option>
                                 <option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</option>
-                                <option value="插件16kgpt3.5">插件16kgpt3.5</option>
-                                <option value="插件gpt3.5">插件gpt3.5</option>
                                 <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
                                 <option value="chatglm_lite">智谱lite</option>
-                                <option value="gpt-4-dalle">GPT-4-DALLE</option>
+                                <option value="sdxl">画图sdxl</option>
+                                <option value="stable-diffusion-v1.5">画图stable-diffusion-v1.5</option>
+                                <option value="stable-diffusion-v2.1">画图stable-diffusion-v2.1</option>
+                                <option value="kandinsky-v2.2">画图kandinsky-v2.2</option>
+                                <option value="kandinsky-v2">画图kandinsky-v2</option>
+                                <option value="deepfloyd-if">画图deepfloyd-if</option>
+                                <option value="dalle-3">画图dalle-3</option>
+
 <!--
+                                <option value="插件16kgpt3.5">插件16kgpt3.5</option>
+                                <option value="插件gpt3.5">插件gpt3.5</option>
+                                <option value="gpt-4-dalle">GPT-4-DALLE</option>
                                 <option value="oasst-sft-6-llama-30b">oasst-sft-6-llama-30b</option>
                                 <option value="llama_2_70b_chat">llama_2_70b_chat</option>
                                 <option value="assistant">sage</option>
