@@ -1446,6 +1446,8 @@ const initSetting = () => {
 				//if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){customAPIKey=envPOEAPIKey}//新增
 				//if (modelVersion=="BingAI"){customAPIKey=envBingAPIKey}//新增
 
+				if (apiHost==envAPIEndpoint){customAPIKey=envAPIKey}//新增
+
 				localStorage.setItem("APIKey", customAPIKey);
 		}
 		keyEle.dispatchEvent(new Event("change"));
