@@ -1359,6 +1359,8 @@ const initSetting = () => {
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
         if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
 
+				if (apiHost==envAPIEndpoint){customAPIKey=envAPIKey}//新增
+
 		}
 		modelEle.dispatchEvent(new Event("change"));
 		const apiHostEle = document.getElementById("apiHostInput");
@@ -1434,6 +1436,8 @@ const initSetting = () => {
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint}//新增
 				if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint}//新增
 
+				if (apiHost==envAPIEndpoint){customAPIKey=envAPIKey}//新增
+
 				localStorage.setItem("APIHost", apiHost);
 		}
 		apiHostEle.dispatchEvent(new Event("change"));
@@ -1445,8 +1449,6 @@ const initSetting = () => {
 
 				//if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){customAPIKey=envPOEAPIKey}//新增
 				//if (modelVersion=="BingAI"){customAPIKey=envBingAPIKey}//新增
-
-				if (apiHost==envAPIEndpoint){customAPIKey=envAPIKey}//新增
 
 				localStorage.setItem("APIKey", customAPIKey);
 		}
