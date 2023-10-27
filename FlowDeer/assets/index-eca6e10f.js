@@ -66063,7 +66063,7 @@ Expecting ` + T.join(", ") + ", got '" + (this.terminals_[m] || m) + "'" : O = "
 					isShowNameEditor: !1,
 					_editNodeNewName: "",
 					_editNodeId: "",
-					apiKey: "sk-laM5FLRYtj2k4gRr567b9fE74cF84a7b9b1c34Fb133f00Af",
+					apiKey: "deembear",
 					apiEndpoint: "https://net.deembear.top",
 					apiTemperature: .9,
 					apiMaxTokens: "",

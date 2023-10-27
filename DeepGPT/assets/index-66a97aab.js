@@ -52079,7 +52079,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 				defaultValue: []
 			}),
 			[Te, ln] = ct("apiKey", {
-				defaultValue: "sk-laM5FLRYtj2k4gRr567b9fE74cF84a7b9b1c34Fb133f00Af"
+				defaultValue: "deembear"
 			}),
 			[it, qt] = ct("searchKey", {
 				defaultValue: "123"

@@ -1,5 +1,5 @@
 envAPIEndpoint="https://net.deembear.top/"
-envAPIKey="sk-laM5FLRYtj2k4gRr567b9fE74cF84a7b9b1c34Fb133f00Af"
+envAPIKey="deembear"
 //envClaudeAPIEndpoint="https://claude2chatgpt-zhangyuejun.up.railway.app/"
 //envClaudeAPIKey=""
 //envPOEAPIEndpoint="https://one-api.deembear.repl.co/"
