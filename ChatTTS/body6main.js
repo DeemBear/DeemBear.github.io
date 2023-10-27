@@ -2400,18 +2400,41 @@ const streamGen = async (long) => {
 				let headers = {"Content-Type": "application/json"};
 				if (customAPIKey) headers["Authorization"] = "Bearer " + customAPIKey;
 
-				const res = await fetch(apiHost + API_URL, {
-						method: "POST",
-						headers,
-						body: JSON.stringify({
-								messages: dataSlice,
-								model: modelVersion,
-								stream: true,
-								temperature: roleTemp,
-								top_p: roleNature
-						}),
-						signal: controller.signal
-				});
+
+//新增画图修改
+				if (modelVersion=="dalle-3" || modelVersion=="sdxl" || modelVersion=="kandinsky-v2.2" || modelVersion=="deepfloyd-if" || modelVersion=="stable-diffusion-v2.1") {
+							const imgUrl = "https://api.mandrillai.tech/v1/images/generations";
+							const imgKey = "md-ZoAJeENbxgGglsstYRUMIiKEOaLIQikeBpwTgeSbUZyZWspT";
+							const res = await fetch(imgUrl, {
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+									Authorization: `Bearer ${imgKey}`,
+								},
+								body: JSON.stringify({
+									model: modelVersion,
+									prompt: inputAreaEle.value,
+									n: 4,
+									size: "1024x1024",
+								}),
+								signal: controller.signal
+						});
+				} else {
+						const res = await fetch(apiHost + API_URL, {
+								method: "POST",
+								headers,
+								body: JSON.stringify({
+										messages: dataSlice,
+										model: modelVersion,
+										stream: true,
+										temperature: roleTemp,
+										top_p: roleNature
+								}),
+								signal: controller.signal
+						});
+				}
+
+
 				clearTimeout(controllerId);
 				controllerId = void 0;
 				if (res.status !== 200) {
