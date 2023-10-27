@@ -1353,10 +1353,10 @@ const initSetting = () => {
 		modelEle.onchange = () => {
 				modelVersion = modelEle.value;
 				localStorage.setItem("modelVersion", modelVersion);
-        apiHost = apiHostEle.value = envAPIEndpoint || localApiHost || apiHostEle.getAttribute("value") || "";
+
+        apiHost = apiHostEle.value = envAPIEndpoint || localApiHost || apiHostEle.getAttribute("value") || "";//新增
         //if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
-
         if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
 
 		}
@@ -1423,25 +1423,15 @@ const initSetting = () => {
 		let localApiHost = localStorage.getItem("APIHost");
 		apiHost = apiHostEle.value = envAPIEndpoint || localApiHost || apiHostEle.getAttribute("value") || "";
 		apiHostEle.onchange = () => {
-        //if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint}//新增
-        //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint}//新增
-
-        if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint}//新增
-
 				apiHost = apiHostEle.value;
-				//if (apiHost.length && !apiHost.endsWith("/")) {//新增
-						//apiHost += "/";//新增
-						//apiHostEle.value = apiHost;//新增
-				//}//新增
-				//if (apiHost && apiSelects.indexOf(apiHost) === -1) appendApiOption();//新增
+				if (apiHost.length && !apiHost.endsWith("/")) {
+						apiHost += "/";
+						apiHostEle.value = apiHost;
+				}
+				if (apiHost && apiSelects.indexOf(apiHost) === -1) appendApiOption();
+
 				//if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint}//新增
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint}//新增
-
-				if (apiHost.length && !apiHost.endsWith("/")) {//新增
-						apiHost += "/";//新增
-						apiHostEle.value = apiHost;//新增
-				}//新增
-				if (apiHost && apiSelects.indexOf(apiHost) === -1) appendApiOption();//新增
 				if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint}//新增
 
 				localStorage.setItem("APIHost", apiHost);
@@ -1451,17 +1441,10 @@ const initSetting = () => {
 		let localKey = localStorage.getItem("APIKey");
 		customAPIKey = keyEle.value = envAPIKey || localKey || keyEle.getAttribute("value") || "";
 		keyEle.onchange = () => {
-				//if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){customAPIKey=envPOEAPIKey}//新增
-
-				if (modelVersion=="BingAI"){customAPIKey=envBingAPIKey}//新增
-
 				customAPIKey = keyEle.value;
-				//if (customAPIKey && apiSelects.indexOf(customAPIKey) === -1) appendApiOption();//新增
+
 				//if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){customAPIKey=envPOEAPIKey}//新增
-
-
-				if (customAPIKey && apiSelects.indexOf(customAPIKey) === -1) appendApiOption();//新增
-				if (modelVersion=="BingAI"){customAPIKey=envBingAPIKey}//新增
+				//if (modelVersion=="BingAI"){customAPIKey=envBingAPIKey}//新增
 
 				localStorage.setItem("APIKey", customAPIKey);
 		}

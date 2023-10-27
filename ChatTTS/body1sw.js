@@ -41,4 +41,4 @@ if (isMobile) {
 		link.href = "https://cdn.jsdelivr.net/gh/timruffles/mobile-drag-drop@3.0.0-rc.0/release/default.css";
 		document.body.appendChild(link);
 }
-let envAPIEndpoint, envAPIKey, envBingAPIEndpoint, envBingAPIKey;/*, envClaudeAPIEndpoint, envClaudeAPIKey, envPOEAPIEndpoint, envPOEAPIKey*/
+let envAPIEndpoint, envAPIKey, envBingAPIEndpoint;/*, envBingAPIKey, envClaudeAPIEndpoint, envClaudeAPIKey, envPOEAPIEndpoint, envPOEAPIKey*/
