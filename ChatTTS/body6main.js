@@ -1356,6 +1356,7 @@ const initSetting = () => {
         apiHost = apiHostEle.value = envAPIEndpoint || localApiHost || apiHostEle.getAttribute("value") || "";
         //if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
+
         if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
 
 		}
@@ -1424,6 +1425,7 @@ const initSetting = () => {
 		apiHostEle.onchange = () => {
         //if (modelVersion=="Claude-2"){apiHost=envClaudeAPIEndpoint}//新增
         //if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){apiHost=envPOEAPIEndpoint}//新增
+
         if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint}//新增
 
 				apiHost = apiHostEle.value;
@@ -1454,17 +1456,10 @@ const initSetting = () => {
 				if (modelVersion=="BingAI"){customAPIKey=envBingAPIKey}//新增
 
 				customAPIKey = keyEle.value;
-				//if (customAPIKey.length && !customAPIKey.endsWith("/")) {//新增
-						//customAPIKey += "/";//新增
-						//keyEle.value = customAPIKey;//新增
-				//}//新增
 				//if (customAPIKey && apiSelects.indexOf(customAPIKey) === -1) appendApiOption();//新增
 				//if (modelVersion=="gpt-4" || modelVersion=="gpt-4-32k"){customAPIKey=envPOEAPIKey}//新增
 
-				if (customAPIKey.length && !customAPIKey.endsWith("/")) {//新增
-						customAPIKey += "/";//新增
-						keyEle.value = customAPIKey;//新增
-				}//新增
+
 				if (customAPIKey && apiSelects.indexOf(customAPIKey) === -1) appendApiOption();//新增
 				if (modelVersion=="BingAI"){customAPIKey=envBingAPIKey}//新增
 
