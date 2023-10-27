@@ -1360,6 +1360,7 @@ const initSetting = () => {
         if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint;localStorage.setItem("APIHost", apiHost);}//新增
 
 				if (apiHost==envAPIEndpoint){customAPIKey=envAPIKey}//新增
+				if (apiHost==envBingAPIEndpoint){customAPIKey=document.getElementById("keyInput").getAttribute("value")}//新增
 
 		}
 		modelEle.dispatchEvent(new Event("change"));
@@ -1437,6 +1438,7 @@ const initSetting = () => {
 				if (modelVersion=="BingAI"){apiHost=envBingAPIEndpoint}//新增
 
 				if (apiHost==envAPIEndpoint){customAPIKey=envAPIKey}//新增
+				if (apiHost==envBingAPIEndpoint){customAPIKey=document.getElementById("keyInput").getAttribute("value")}//新增
 
 				localStorage.setItem("APIHost", apiHost);
 		}

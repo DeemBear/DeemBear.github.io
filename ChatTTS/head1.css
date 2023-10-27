@@ -1185,7 +1185,7 @@ input[type=range]::-webkit-slider-runnable-track {
 .navFooter .links a {
     color: var(--btn-color);
     text-decoration: none;
-    padding: 20px;/*ÐÞ¸Ä*/
+    padding: 18px;/*ÐÞ¸Ä*/
 }
 
 .navFooter .links a:hover {
