@@ -290,7 +290,7 @@
 one2net搜索，示例如下:</br>
 1、内容。WS[搜索词1]WS[词2]</br>
 2、鲁迅为什么要打周树人？WS[鲁迅打周树人]</br>
-3、接口改为https://bing.deembear.top密钥为cookie_U可使用BingAI模型</br>
+3、使用BingAI模型，密钥需填入cookie_U</br>
 <!--
 one2net搜索画图，示例如下:</br>
 1、内容。WS[搜索词1]WS[词2]</br>
@@ -754,19 +754,6 @@ one2net搜索画图，示例如下:</br>
                         <div class="setContent" style="margin-top: 83px;">
                             <div class="setTitle" data-i18n-key="aiKey"></div>
                             <div class="setDetail inputDetail apiDetail">
-
-																<select id="selectInput">
-																		<option value="">选择密钥</option>
-																		<option value="1kpg2vnODxSc79y83VRQ9b5hiGw-0kKiHvUnBQj8vfYNX2aXoe8VAO1SzaAzEdH9ne1L02KXf78lR6nyuu7HY8p8GE0ULbG1gWEMHFEm7h8J4CG0INiuVpR2VmYfM2dLgg9SJ8Fgjn4o5uEZIi7Q_uSu6BVPgKJQpGLcbQwWI17ODAWPe5HE79BesGtqb9PLbbv1MIb49VT9TC63GnA0LnQ">BingCookie1</option>
-																		<option value="1ZEsI8zs97LNH_2X8c3X95mWztaFiE9o3Fq2AYe2YCrCrhl3Nyqhz0_vV6kuxW7hSSHwSzu1ZW_eAxWHbPMC5KPVmbn9-3hLQdFYtPNEe5b97j0OwbC8l2O4bdKDPThxFCNBqoXtEt_qkVvBFFBXQ68GryWlsjJaYsk86A_Sc4Hf5kbSt59vx8fg_snePwxSoCuGQ4WDMLQtKXmUlVwRNsw">BingCookie2</option>
-																		<option value="1MY7AGGyHEEQsuCgDpTQiPwS6lohJwAmo1_3lFFWnTExLhBlyRACgLWB058Ak_hS5n-v5NCPgTe7CrxMMz4yUYkyOowmrbPYJVp95rpA4ehtrubaTES6kHJ0NG2_YgDTVpu5YRctkVY0PX_dJhxrxBRWzn1zO7Ad7rBQjh6_iQDMNlpXw8ZL0G7wb-iJs2xrW5HDUiewJlryzQgEoWQ_4bw">BingCookie3</option>
-																		<option value="1tDMRA97j8Y6qqbIOD-VIAI7bUDpwOyNAFbmJfZ58wez8RI-haZ81WOLLVqh7YDkQ2o8AL0gdAQoYR1YkTyq_AXIYCtiRvTYCqYRUKUU5tSP8zE9ZA0fWaYRPpXycit8Luwj9oAgHNp7qPpH5_FXZc8b95RkbTPIRfYRQT9QSDVcnLzeZeE54Rnb1O4X7Ixbr-NGW6jH6MiRq99nLHu8a-Q">BingCookie4</option>
-																		<option value="1Q-Qku6-S0fED02kCLK3Y7YAKANXikWSEemtW1AlYqmq2kh_tn5jf2_Y6KunpTnLbtMpBcIM0v1kBhws6pLYEClowbONLrI9kaOrKTy4JFYosorkxqaH02MqPqhrwgwvocq1PWmv0C4kw8j1fqtGnN0_53sWuBpAMjx0D1LnpgiPB5CPaZ517oDY52TNqbXFhcpTVj7DJufQJfzx2DThDqA
-">BingCookie5</option>
-																		<option value="13tH8KqHInecAJ8EYnUvc115lJlx5mNaSui3IbwTYKkZEZW18A4E9PMqAd0WAtXnyyTQCIpJkwt7xzjHfmt1dNPD3ILU-dbtSqSGIMD-x_hCLA4zTNgti2udx4J8WmcHZ2eFm0a966qRsDC7-hj5AI4loE_q80x9GatH37EsWNvSeXp4JiFiIJax6eBLR222dYvLirRpcd7iqClKj0tmVcA">BingCookie6</option>
-																		<option value="deembear">oneapi</option>
-																</select>
-
                                 <input class="inputTextClass" type="text" placeholder="sk-xxxxxx" id="keyInput"
                                     autocomplete="off" style="-webkit-text-security: disc;" />
                             </div>
@@ -1010,17 +997,6 @@ one2net搜索画图，示例如下:</br>
             color: darkgreen;
         }
     </style>
-
-<!-- 选择密钥改变密钥输入框的值 -->
-<script type="text/javascript">
-window.onload = function() {
-    var selectInput = document.getElementById("selectInput");
-    var keyInput = document.getElementById("keyInput");
-    selectInput.onchange = function() {
-        keyInput.value = this.value;
-    }
-}
-</script>
 </body>
 
 </html>
