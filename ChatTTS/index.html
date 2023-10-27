@@ -1003,14 +1003,6 @@ one2net搜索画图，示例如下:</br>
             }
         }
         loadPrompt();
-
-				//选择密钥改变密钥输入框的值
-				$(document).ready(function() {
-						$('#selectInput').change(function() {
-								var selectedValue = $(this).val();
-								$('#keyInput').val(selectedValue);
-						});
-				});
     </script>
     <!-- 修改markdown中的hljs-string 字体颜色 -->
     <style>
@@ -1018,6 +1010,17 @@ one2net搜索画图，示例如下:</br>
             color: darkgreen;
         }
     </style>
+
+<!-- 选择密钥改变密钥输入框的值 -->
+<script type="text/javascript">
+window.onload = function() {
+    var selectInput = document.getElementById("selectInput");
+    var keyInput = document.getElementById("keyInput");
+    selectInput.onchange = function() {
+        keyInput.value = this.value;
+    }
+}
+</script>
 </body>
 
 </html>
