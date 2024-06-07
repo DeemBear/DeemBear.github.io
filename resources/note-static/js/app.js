@@ -22,8 +22,7 @@ const passwdPrompt = () => {
         alert('密码不能为空!')
     }
     const path = location.pathname
-    const decodedPath = decodeURIComponent(path); // 解码路径
-    window.fetch(`${decodedPath}/auth`, {
+    window.fetch(`${path}/auth`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -108,8 +107,7 @@ window.addEventListener('DOMContentLoaded', function () {
             if (passwd == null) return;
 
             const path = window.location.pathname
-            const decodedPath = decodeURIComponent(path); // 解码路径
-            window.fetch(`${decodedPath}/pw`, {
+            window.fetch(`${path}/pw`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -133,8 +131,7 @@ window.addEventListener('DOMContentLoaded', function () {
         $modeBtn.onclick = function (e) {
             const isMd = e.target.checked
             const path = window.location.pathname
-            const decodedPath = decodeURIComponent(path); // 解码路径
-            window.fetch(`${decodedPath}/setting`, {
+            window.fetch(`${path}/setting`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -159,8 +156,7 @@ window.addEventListener('DOMContentLoaded', function () {
         $shareBtn.onclick = function (e) {
             const isShare = e.target.checked
             const path = window.location.pathname
-            const decodedPath = decodeURIComponent(path); // 解码路径
-            window.fetch(`${decodedPath}/setting`, {
+            window.fetch(`${path}/setting`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
