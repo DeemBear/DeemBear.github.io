@@ -22,7 +22,7 @@ const passwdPrompt = () => {
         alert('密码不能为空!')
     }
     const path = decodeURIComponent(location.pathname); // 对路径进行解码
-    window.fetch(`${encodeURIComponent(path)}/auth`, { // 对路径重新编码
+    window.fetch(`/${encodeURIComponent(path)}/auth`, { // 对路径重新编码
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ window.addEventListener('DOMContentLoaded', function () {
             if (passwd == null) return;
 
 						const path = decodeURIComponent(window.location.pathname); // 对路径进行解码
-						window.fetch(`${encodeURIComponent(path)}/pw`, { // 对路径重新编码
+						window.fetch(`/${encodeURIComponent(path)}/pw`, { // 对路径重新编码
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', function () {
         $modeBtn.onclick = function (e) {
             const isMd = e.target.checked
 						const path = decodeURIComponent(window.location.pathname); // 对路径进行解码
-						window.fetch(`${encodeURIComponent(path)}/setting`, { // 对路径重新编码
+						window.fetch(`/${encodeURIComponent(path)}/setting`, { // 对路径重新编码
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -156,7 +156,7 @@ window.addEventListener('DOMContentLoaded', function () {
         $shareBtn.onclick = function (e) {
             const isShare = e.target.checked
         const path = decodeURIComponent(window.location.pathname); // 对路径进行解码
-        window.fetch(`${encodeURIComponent(path)}/setting`, { // 对路径重新编码
+        window.fetch(`/${encodeURIComponent(path)}/setting`, { // 对路径重新编码
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
