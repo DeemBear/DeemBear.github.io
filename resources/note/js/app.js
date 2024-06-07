@@ -21,7 +21,7 @@ const passwdPrompt = () => {
     if (!passwd.trim()) {
         alert('密码不能为空!')
     }
-    const path = encodeURIComponent(location.pathname); // 对路径进行编码
+    const path = encodeURIComponent(window.location.pathname); // 对路径进行编码
     window.fetch(`${path}/auth`, {
         method: 'POST',
         headers: {
