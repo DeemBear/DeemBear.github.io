@@ -21,8 +21,8 @@ const passwdPrompt = () => {
     if (!passwd.trim()) {
         alert('密码不能为空!')
     }
-    const path = encodeURIComponent(window.location.pathname); // 对路径进行编码
-    window.fetch(`${path}/auth`, {
+    const path = location.pathname
+    window.fetch(`/${decodeURIComponent(path)}/auth`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -106,8 +106,8 @@ window.addEventListener('DOMContentLoaded', function () {
             const passwd = window.prompt('输入新密码（留空可以清除当前密码）')
             if (passwd == null) return;
 
-            const path = encodeURIComponent(window.location.pathname); // 对路径进行编码
-            window.fetch(`${path}/pw`, {
+            const path = window.location.pathname
+            window.fetch(`/${decodeURIComponent(path)}/pw`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -130,8 +130,8 @@ window.addEventListener('DOMContentLoaded', function () {
     if ($modeBtn) {
         $modeBtn.onclick = function (e) {
             const isMd = e.target.checked
-            const path = encodeURIComponent(window.location.pathname); // 对路径进行编码
-            window.fetch(`${path}/setting`, {
+            const path = window.location.pathname
+            window.fetch(`/${decodeURIComponent(path)}/setting`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -155,8 +155,8 @@ window.addEventListener('DOMContentLoaded', function () {
     if ($shareBtn) {
         $shareBtn.onclick = function (e) {
             const isShare = e.target.checked
-            const path = encodeURIComponent(window.location.pathname); // 对路径进行编码
-            window.fetch(`${path}/setting`, {
+            const path = window.location.pathname
+            window.fetch(`/${decodeURIComponent(path)}/setting`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
